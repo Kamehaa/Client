@@ -45,16 +45,17 @@ public class SocketApp {
                     break;
             }
             String response = mMailer.sendMessage(C.getRequest().toString());
+            C.respond(response);
             System.out.println(response);
             switch (input){
                 case 1 :
-                    C.pSignUp(response);
+                    C.pSignUp();
                     break;
                 case 2 :
-                    C.pLogIn(response);
+                    C.pLogIn();
                     break;
                 case 3 :
-                    C.pInventory(response);
+                    C.pInventory();
                 default :
                     break;
             }
