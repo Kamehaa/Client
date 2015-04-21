@@ -6,10 +6,8 @@
 
 package client;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -137,5 +135,86 @@ public class Client{
 		request.put("token",token);
 		request.put("offer_token",offerToken);
 	}
+        
+        private int x;
+        private int y;
+        private long time;
+        
+        // getter
+        public int getX() {
+            return x;
+        }
 
+        public int getY() {
+            return y;
+        }
+
+        public long getTime() {
+            return time;
+        }
+        
+        
+        // parser method
+        public void pSignUp(String response) {
+            try {
+                JSONObject json = new JSONObject(response);
+                switch (json.get("status").toString()) {
+                    case "ok":
+                        System.out.println("sign up success");
+                        break;
+                    case "fail":
+                        System.out.println(json.get("description"));
+                        break;
+                    default:
+                        System.out.println("error");
+                        break;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        public void pLogIn(String response) {
+            try {
+                JSONObject json = new JSONObject(response);
+                switch (json.get("status").toString()) {
+                    case "ok":
+                        token = json.get("token").toString();
+                        x = Integer.parseInt(json.get("x").toString());
+                        y = Integer.parseInt(json.get("y").toString());
+                        time = Long.parseLong(json.get("time").toString());
+                        break;
+                    case "fail":
+                        System.out.println(json.get("description"));
+                        break;
+                    default:
+                        System.out.println("error");
+                        break;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        public void pInventory(String response) {
+            try {
+                JSONObject json = new JSONObject(response);
+                switch (json.get("status").toString()) {
+                    case "ok":
+                        ArrayList inv = (ArrayList) json.get("inventory");
+                        for (Object inv1 : inv) {
+                            System.out.println(inv1.toString());
+                        }
+                        break;
+                    default:
+                        System.out.println("error");
+                        break;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
 }

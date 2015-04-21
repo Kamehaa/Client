@@ -6,11 +6,7 @@
 
 package client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.Scanner;
 import org.json.JSONException;
 
@@ -27,22 +23,42 @@ public class SocketApp {
         System.out.print("Masukkan opsi anda: ");
         int input = in.nextInt();
         String username, password;
-        switch (input){
-            case 1 :
-                username = in.nextLine();
-                password = in.nextLine();
-                C.signUp(username,password);
-                break;
-            case 2 :
-                username = "lala";
-                password = "blabla";
-                C.logIn(username,password);
-                break;
-            default :
-                break;
+        
+        boolean on = true;
+        while(on) {
+            switch (input){
+                case 1 :
+                    username = "menori";
+                    password = "";
+                    C.signUp(username,password);
+                    break;
+                case 2 :
+                    username = "menori";
+                    password = "";
+                    C.logIn(username,password);
+                    break;
+                case 3 :
+                    C.inventory();
+                    break;
+                default :
+                    on = false;
+                    break;
+            }
+            String response = mMailer.sendMessage(C.getRequest().toString());
+            System.out.println(response);
+            switch (input){
+                case 1 :
+                    C.pSignUp(response);
+                    break;
+                case 2 :
+                    C.pLogIn(response);
+                    break;
+                case 3 :
+                    C.pInventory(response);
+                default :
+                    break;
+            }
         }
-        String response = mMailer.sendMessage(C.getRequest().toString());
-        System.out.println(response);
         mMailer.closeConnection();
     }
 }
