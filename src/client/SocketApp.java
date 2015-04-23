@@ -29,13 +29,13 @@ public class SocketApp {
             input = in.nextInt();
             switch (input){
                 case 1 :
-                    username = "eldwin";
-                    password = "eldwin";
+                    username = "henry";
+                    password = "menori";
                     C.signUp(username,password);
                     break;
                 case 2 :
-                    username = "eldwin";
-                    password = "eldwin";
+                    username = in.next();
+                    password = in.next();
                     C.logIn(username,password);
                     break;
                 case 3 :
@@ -56,15 +56,13 @@ public class SocketApp {
                     C.field();
                     break;
                 case 8 :
-                    moveX = in.nextInt();
-                    moveY = in.nextInt();
-                    C.move(moveX, moveY);
+                    C.offer(2, 2, 3, 2);
                     break;
                 case 9 :
                     C.tradeBox();
                     break;
                 case 10 :
-                    C.sendFind(0);
+                    C.sendFind(2);
                     break;
                 case 11 :
                     C.sendAccept();
@@ -96,30 +94,30 @@ public class SocketApp {
                     C.pMixItem();
                     break;
                 case 5 :
-                    C.map();
+                    C.pMap();
                     break;
                 case 6 :
-                    C.move(3, 3);
+                    C.pMove();
                     break;
                 case 7 :
-                    C.field();
+                    C.pField();
                     break;
                 case 8 :
                     break;
                 case 9 :
-                    C.tradeBox();
+                    C.pTradeBox();
                     break;
                 case 10 :
-                    C.sendFind(0);
+                    C.pSendFind();
                     break;
                 case 11 :
-                    C.sendAccept();
+                    C.pSendAccept();
                     break;
                 case 12 :
-                    C.fetchItem();
+                    C.pFetchItem();
                     break;
                 case 13 :
-                    C.cancelOffer();
+                    C.pCancelOffer();
                     break;
                 default :
                     break;

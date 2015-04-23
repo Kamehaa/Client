@@ -145,6 +145,10 @@ public class Client{
         private long time;
         private JSONObject json;
         private JSONArray inv;
+        private String name;
+        private int mapW;
+        private int mapH;
+        private JSONArray tradebox;
         //private int[] inv;
         
         // getter
@@ -254,7 +258,21 @@ public class Client{
         }
         //6 map
         public void pMap(){
-            
+            try{
+                switch (json.get("status").toString()) {
+                case "ok":
+                    name = json.get("name").toString();
+                    mapW = json.getInt("width");
+                    mapH = json.getInt("height");
+                    break;
+                default:
+                    System.out.println("error");
+                    break;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         //7
         public void pMove() {
@@ -304,9 +322,6 @@ public class Client{
                     case "ok":
                         System.out.println("ok");
                         break;
-                    case "fail":
-                        System.out.println(json.get("description"));
-                        break;
                     default:
                         System.out.println("error");
                         break;
@@ -318,11 +333,44 @@ public class Client{
         }
         //10 tradebox
         public void pTradeBox(){
-            
+            try {
+                switch (json.get("status").toString()) {
+                    case "ok":
+                        System.out.println("ok");
+                        tradebox = json.getJSONArray("offers");
+                        System.out.println(tradebox.toString(1));
+                        break;
+                    default:
+                        System.out.println("error");
+                        break;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         //11 sendfind
         public void pSendFind(){
-            
+            try {
+                switch (json.get("status").toString()) {
+                    case "ok":
+                        JSONArray temp = json.getJSONArray("offers");
+                        JSONArray tmp;
+                        for(int i = 0; i<temp.length();++i){
+                            tmp = temp.getJSONArray(i);
+                            System.out.println(tmp.getInt(0)+" "+tmp.getInt(1)+" "+tmp.getInt(2)+" "+
+                            tmp.getInt(3)+" "+tmp.getString(4));
+                        }
+                        System.out.println("ok");
+                        break;
+                    default:
+                        System.out.println("error");
+                        break;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         //13
         public void pSendAccept() {
