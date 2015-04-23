@@ -239,10 +239,7 @@ public class Client{
                 switch (json.get("status").toString()) {
                     case "ok":
                         int item = json.getInt("item");
-                        inv.put(item, inv.getInt(item) + 1);
-                        for(int i=0; i<inv.length(); i++) {
-                            System.out.println(i + " : " + inv.getInt(i));
-                        }
+                        inv.put(item, (inv.getInt(item) + 1));
                         break;
                     case "fail":
                         System.out.println(json.get("description"));
@@ -282,7 +279,24 @@ public class Client{
         }
         //8 field
         public void pField(){
-            
+            try {
+                switch (json.get("status").toString()) {
+                    case "ok":
+                        int temp = json.getInt("item");
+                        inv.put(temp,(inv.getInt(temp)+1));
+                        System.out.println("ok");
+                        break;
+                    case "fail":
+                        System.out.println(json.get("description"));
+                        break;
+                    default:
+                        System.out.println("error");
+                        break;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         //9
         public void pOffer() {
@@ -368,4 +382,5 @@ public class Client{
                 e.printStackTrace();
             }
         }
+        
 }
