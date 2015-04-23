@@ -17,19 +17,20 @@ import org.json.JSONException;
 public class SocketApp {
     public static void main(String[] args) throws IOException, JSONException {
         Client C = new Client();
-        JSONMailer mMailer = new JSONMailer("167.205.35.38",2000);
+        JSONMailer mMailer = new JSONMailer("100.100.101.177",2000);
         mMailer.openConnection();
         Scanner in = new Scanner(System.in);
-        System.out.print("Masukkan opsi anda: ");
-        int input = in.nextInt();
+        int input, movex, movey;
         String username, password;
         
         boolean on = true;
         while(on) {
+            System.out.print("Masukkan opsi anda: ");
+            input = in.nextInt();
             switch (input){
                 case 1 :
                     username = "menori";
-                    password = "";
+                    password = "menori";
                     C.signUp(username,password);
                     break;
                 case 2 :
@@ -39,6 +40,37 @@ public class SocketApp {
                     break;
                 case 3 :
                     C.inventory();
+                    break;
+                case 4 :
+                    C.mixItem(2, 3);
+                    break;
+                case 5 :
+                    C.map();
+                    break;
+                case 6 :
+                    System.out.print("x : "); movex = in.nextInt();
+                    System.out.print("y : "); movey = in.nextInt();
+                    C.move(movex, movey);
+                    break;
+                case 7 :
+                    C.field();
+                    break;
+                case 8 :
+                    break;
+                case 9 :
+                    C.tradeBox();
+                    break;
+                case 10 :
+                    C.sendFind(0);
+                    break;
+                case 11 :
+                    C.sendAccept();
+                    break;
+                case 12 :
+                    C.fetchItem();
+                    break;
+                case 13 :
+                    C.cancelOffer();
                     break;
                 default :
                     on = false;
@@ -56,6 +88,36 @@ public class SocketApp {
                     break;
                 case 3 :
                     C.pInventory();
+                    break;
+                case 4 :
+                    C.pMixItem();
+                    break;
+                case 5 :
+                    C.map();
+                    break;
+                case 6 :
+                    C.move(3, 3);
+                    break;
+                case 7 :
+                    C.field();
+                    break;
+                case 8 :
+                    break;
+                case 9 :
+                    C.tradeBox();
+                    break;
+                case 10 :
+                    C.sendFind(0);
+                    break;
+                case 11 :
+                    C.sendAccept();
+                    break;
+                case 12 :
+                    C.fetchItem();
+                    break;
+                case 13 :
+                    C.cancelOffer();
+                    break;
                 default :
                     break;
             }
