@@ -20,7 +20,11 @@ public class SocketApp {
         JSONMailer mMailer = new JSONMailer("100.100.101.177",2000);
         mMailer.openConnection();
         Scanner in = new Scanner(System.in);
+<<<<<<< HEAD
         int input, movex, movey;
+=======
+        int input;
+>>>>>>> origin/master
         String username, password;
         
         boolean on = true;
@@ -44,6 +48,7 @@ public class SocketApp {
                 case 4 :
                     C.mixItem(2, 3);
                     break;
+<<<<<<< HEAD
                 case 5 :
                     C.map();
                     break;
@@ -71,6 +76,13 @@ public class SocketApp {
                     break;
                 case 13 :
                     C.cancelOffer();
+=======
+                case 7 :
+                    C.move(3, 3);
+                    break;
+                case 8 :
+                    C.field();
+>>>>>>> origin/master
                     break;
                 default :
                     on = false;
@@ -92,6 +104,7 @@ public class SocketApp {
                 case 4 :
                     C.pMixItem();
                     break;
+<<<<<<< HEAD
                 case 5 :
                     C.map();
                     break;
@@ -118,6 +131,12 @@ public class SocketApp {
                 case 13 :
                     C.cancelOffer();
                     break;
+=======
+                case 7 :
+                    break;
+                case 8 :
+                    break;
+>>>>>>> origin/master
                 default :
                     break;
             }

@@ -6,6 +6,13 @@
 
 package client;
 
+<<<<<<< HEAD
+=======
+import java.lang.reflect.Array;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> origin/master
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -234,10 +241,15 @@ public class Client{
             try {
                 switch (json.get("status").toString()) {
                     case "ok":
+<<<<<<< HEAD
                         inv.put(item1, inv.getInt(item1) - 3);
                         inv.put(item2, inv.getInt(item2) - 3);
                         //int item = json.getInt("item");
                         inv.put(json.getInt("item"), inv.getInt(json.getInt("item")) + 1);
+=======
+                        int item = json.getInt("item");
+                        inv.put(item, inv.getInt(item) + 1);
+>>>>>>> origin/master
                         for(int i=0; i<inv.length(); i++) {
                             System.out.println(i + " : " + inv.getInt(i));
                         }
