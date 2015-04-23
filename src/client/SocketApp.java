@@ -20,7 +20,7 @@ public class SocketApp {
         JSONMailer mMailer = new JSONMailer("127.0.0.1",2000);
         mMailer.openConnection();
         Scanner in = new Scanner(System.in);
-        int input;
+        int input, moveX, moveY;
         String username, password;
         
         boolean on = true;
@@ -44,13 +44,36 @@ public class SocketApp {
                 case 4 :
                     C.mixItem(2, 3);
                     break;
+                case 5 :
+                    C.map();
+                    break;
+                case 6 :
+                    System.out.print("x : "); moveX = in.nextInt();
+                    System.out.print("y : "); moveY = in.nextInt();
+                    C.move(moveX, moveY);
+                    break;
                 case 7 :
-                    int XX = in.nextInt();
-                    int YY = in.nextInt();
-                    C.move(XX, YY);
+                    C.field();
                     break;
                 case 8 :
-                    C.field();
+                    moveX = in.nextInt();
+                    moveY = in.nextInt();
+                    C.move(moveX, moveY);
+                    break;
+                case 9 :
+                    C.tradeBox();
+                    break;
+                case 10 :
+                    C.sendFind(0);
+                    break;
+                case 11 :
+                    C.sendAccept();
+                    break;
+                case 12 :
+                    C.fetchItem();
+                    break;
+                case 13 :
+                    C.cancelOffer();
                     break;
                 default :
                     on = false;
@@ -72,11 +95,31 @@ public class SocketApp {
                 case 4 :
                     C.pMixItem();
                     break;
+                case 5 :
+                    C.map();
+                    break;
+                case 6 :
+                    C.move(3, 3);
+                    break;
                 case 7 :
-                    C.pMove();
+                    C.field();
                     break;
                 case 8 :
-                    C.pField();
+                    break;
+                case 9 :
+                    C.tradeBox();
+                    break;
+                case 10 :
+                    C.sendFind(0);
+                    break;
+                case 11 :
+                    C.sendAccept();
+                    break;
+                case 12 :
+                    C.fetchItem();
+                    break;
+                case 13 :
+                    C.cancelOffer();
                     break;
                 default :
                     break;
