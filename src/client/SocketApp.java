@@ -17,19 +17,20 @@ import org.json.JSONException;
 public class SocketApp {
     public static void main(String[] args) throws IOException, JSONException {
         Client C = new Client();
-        JSONMailer mMailer = new JSONMailer("167.205.35.38",2000);
+        JSONMailer mMailer = new JSONMailer("100.100.101.177",2000);
         mMailer.openConnection();
         Scanner in = new Scanner(System.in);
-        System.out.print("Masukkan opsi anda: ");
-        int input = in.nextInt();
+        int input;
         String username, password;
         
         boolean on = true;
         while(on) {
+            System.out.print("Masukkan opsi anda: ");
+            input = in.nextInt();
             switch (input){
                 case 1 :
                     username = "menori";
-                    password = "";
+                    password = "menori";
                     C.signUp(username,password);
                     break;
                 case 2 :
@@ -39,6 +40,15 @@ public class SocketApp {
                     break;
                 case 3 :
                     C.inventory();
+                    break;
+                case 4 :
+                    C.mixItem(2, 3);
+                    break;
+                case 7 :
+                    C.move(3, 3);
+                    break;
+                case 8 :
+                    C.field();
                     break;
                 default :
                     on = false;
@@ -56,6 +66,14 @@ public class SocketApp {
                     break;
                 case 3 :
                     C.pInventory();
+                    break;
+                case 4 :
+                    C.pMixItem();
+                    break;
+                case 7 :
+                    break;
+                case 8 :
+                    break;
                 default :
                     break;
             }

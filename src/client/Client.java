@@ -10,6 +10,7 @@ import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,6 +46,9 @@ public class Client{
 	private JSONObject request; 
 	private String token;
 	private String offerToken;
+        private int item1;
+        private int item2;
+        
         //2
 	public void signUp(String username, String password) throws JSONException{
 		request = new JSONObject();
@@ -72,6 +76,8 @@ public class Client{
 		request.put("token",token);
 		request.put("item1",item1);
 		request.put("item2",item2);
+                this.item1 = item1;
+                this.item2 = item2;
 	}
         //6
 	public void map() throws JSONException{
@@ -142,6 +148,8 @@ public class Client{
         private int y;
         private long time;
         private JSONObject json;
+        private JSONArray inv;
+        //private int[] inv;
         
         // getter
         public int getX() {
@@ -159,7 +167,12 @@ public class Client{
         
         // parser method
         public void respond(String response){
-            json = new JSONObject(response);
+            try {
+                json = new JSONObject(response);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         //2
         public void pSignUp() {
@@ -189,6 +202,7 @@ public class Client{
                         x = Integer.parseInt(json.get("x").toString());
                         y = Integer.parseInt(json.get("y").toString());
                         time = Long.parseLong(json.get("time").toString());
+                        System.out.println("login success");
                         break;
                     case "fail":
                         System.out.println(json.get("description"));
@@ -207,10 +221,8 @@ public class Client{
             try {
                 switch (json.get("status").toString()) {
                     case "ok":
-                        ArrayList inv = (ArrayList) json.get("inventory");
-                        for (Object inv1 : inv) {
-                            System.out.println(inv1.toString());
-                        }
+                        inv = (JSONArray) json.get("inventory");
+                        System.out.println("load inventory success");
                         break;
                     default:
                         System.out.println("error");
@@ -223,7 +235,26 @@ public class Client{
         }
         //5 mixitem
         public void pMixItem(){
-            
+            try {
+                switch (json.get("status").toString()) {
+                    case "ok":
+                        int item = json.getInt("item");
+                        inv.put(item, inv.getInt(item) + 1);
+                        for(int i=0; i<inv.length(); i++) {
+                            System.out.println(i + " : " + inv.getInt(i));
+                        }
+                        break;
+                    case "fail":
+                        System.out.println(json.get("description"));
+                        break;
+                    default:
+                        System.out.println("error");
+                        break;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         //6 map
         public void pMap(){
