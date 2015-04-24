@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package client;
+package GUI;
 
 import org.json.JSONArray;
 import org.json.JSONException;

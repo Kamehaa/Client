@@ -1,18 +1,58 @@
 package GUI;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.TextField;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONException;
+
 /**
  *
  * @author Andrey
  */
 public class MainMenuGUI extends javax.swing.JFrame {
     //param
-    String username = "";
-    String password = "";
+    Client C;
+    private JSONMailer mailer = new JSONMailer();
+    private String username;
+    private String password;
+    private String ip;
+    private int port;
+    private JPanel serverPort;
+    private boolean changeServer;
+    private JFrame frame;
     /**
      * Creates new form MainMenuGUI
      */
     public MainMenuGUI() {
+        //add(serverPort,BorderLayout.NORTH);
+        ip="192.168.2.2";
+        port = 3000;
+        username = "";
+        password = "";
+        changeServer = false;
+        serverPort = new JPanel();
+        serverPort.setVisible(changeServer);
+        C =  new Client();
         initComponents();
+        frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        frame.add(new TopPanel(), BorderLayout.NORTH);
+        frame.add(new MiddlePanel(), BorderLayout.CENTER);
+        frame.add(new UpdatePanel(), BorderLayout.SOUTH);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**
@@ -30,6 +70,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         passwordTextField = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
         signUpButton = new javax.swing.JButton();
+        server = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
@@ -65,6 +106,13 @@ public class MainMenuGUI extends javax.swing.JFrame {
             }
         });
 
+        server.setText("Server");
+        server.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                serverMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,11 +133,15 @@ public class MainMenuGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
                         .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(111, 111, 111))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(server)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addComponent(server)
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameLabel)
                     .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -115,6 +167,14 @@ public class MainMenuGUI extends javax.swing.JFrame {
         if(!usernameTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()){
             username = usernameTextField.getText();
             password = passwordTextField.getText();
+            try {
+                C.logIn(username, password);
+                mailer.send(ip,port,C.getRequest().toString(),3000);
+                C.respond(mailer.getResponse());
+                C.pLogIn();
+            } catch (JSONException ex) {
+                Logger.getLogger(MainMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         System.out.println("user : " + username +" pass: "+password);
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -123,13 +183,55 @@ public class MainMenuGUI extends javax.swing.JFrame {
         if(!usernameTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()){
             username = usernameTextField.getText();
             password = passwordTextField.getText();
+            try {
+                C.signUp(username, password);
+                mailer.send(ip,port,C.getRequest().toString(),3000);
+                C.respond(mailer.getResponse());
+                C.pSignUp();
+            } catch (JSONException ex) {
+                Logger.getLogger(MainMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        System.out.println("user : " + username +" pass: "+password);
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextFieldActionPerformed
 
+    private void serverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serverMouseClicked
+        changeServer = !changeServer;
+        //serverPort.add(new TextField());
+        serverPort.setVisible(changeServer);
+    }//GEN-LAST:event_serverMouseClicked
+    public class TopPanel extends JPanel {
+
+        public TopPanel() {
+            setBackground(Color.red);
+            add(new JLabel("I'm on top"));
+        }
+
+    }
+
+    public class MiddlePanel extends JPanel {
+
+        public MiddlePanel() {
+            setLayout(new BorderLayout());
+            add(new JScrollPane(new JTable(new DefaultTableModel(new Object[]{"A", "B", "C"}, 5))));
+        }
+
+    }
+
+    public class UpdatePanel extends JPanel {
+
+        public UpdatePanel() {
+            for (int index = 0; index < 5; index++) {
+                add(new JLabel(Integer.toString(index)));
+                add(new JTextField(5));
+            }
+            add(new JButton("Button"));
+        }            
+    }        
     /**
      * @param args the command line arguments
      */
@@ -160,21 +262,22 @@ public class MainMenuGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /*
          * Create and display the form
          */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new MainMenuGUI().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MainMenuGUI().setVisible(true);
+//            }
+//        });
+        new MainMenuGUI();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordTextField;
+    private javax.swing.JButton server;
     private javax.swing.JButton signUpButton;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
