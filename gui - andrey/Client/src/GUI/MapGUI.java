@@ -5,8 +5,11 @@
 package GUI;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -61,23 +64,240 @@ public class MapGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        mapLabel = new javax.swing.JLabel();
+        positionLabel = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
+        currenttimeLabel = new javax.swing.JLabel();
+        mapJLabel = new javax.swing.JLabel();
+        positionJLabel = new javax.swing.JLabel();
+        timeJLabel = new javax.swing.JLabel();
+        currenttimeJLabel = new javax.swing.JLabel();
+        moveButton = new javax.swing.JButton();
+        xTextField = new javax.swing.JTextField();
+        yTextField = new javax.swing.JTextField();
+        fieldButton = new javax.swing.JButton();
+        inventoryButton = new javax.swing.JButton();
+        mixitemButton = new javax.swing.JButton();
+        tradeboxButton = new javax.swing.JButton();
+        offerButton = new javax.swing.JButton();
+        finditemButton = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
+
+        jLabel1.setText("baaaakekok");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(jLabel1)
+                .addContainerGap(197, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(jLabel1)
+                .addContainerGap(155, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Map");
         setPreferredSize(new java.awt.Dimension(800, 600));
+
+        mapLabel.setText("Map: ");
+
+        positionLabel.setText("Position:");
+
+        timeLabel.setText("Time:");
+
+        currenttimeLabel.setText("Current Time:");
+
+        moveButton.setText("Move");
+
+        xTextField.setPreferredSize(new java.awt.Dimension(7, 20));
+
+        yTextField.setPreferredSize(new java.awt.Dimension(7, 20));
+
+        fieldButton.setText("Field");
+        fieldButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldButtonActionPerformed(evt);
+            }
+        });
+
+        inventoryButton.setText("Inventory");
+        inventoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inventoryButtonActionPerformed(evt);
+            }
+        });
+
+        mixitemButton.setText("Mix Item");
+        mixitemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mixitemButtonActionPerformed(evt);
+            }
+        });
+
+        tradeboxButton.setText("Trade Box");
+        tradeboxButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tradeboxButtonActionPerformed(evt);
+            }
+        });
+
+        offerButton.setText("Offer");
+        offerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                offerButtonActionPerformed(evt);
+            }
+        });
+
+        finditemButton.setText("Find Item");
+        finditemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finditemButtonActionPerformed(evt);
+            }
+        });
+
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 906, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(546, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mapLabel)
+                            .addComponent(positionLabel)
+                            .addComponent(timeLabel)
+                            .addComponent(currenttimeLabel))
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(currenttimeJLabel)
+                            .addComponent(timeJLabel)
+                            .addComponent(positionJLabel)
+                            .addComponent(mapJLabel))
+                        .addGap(132, 132, 132))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(fieldButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(23, 23, 23)
+                                    .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(moveButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inventoryButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(mixitemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(offerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(finditemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tradeboxButton, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))
+                        .addGap(91, 91, 91))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mapLabel)
+                    .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(positionLabel)
+                    .addComponent(positionJLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timeLabel)
+                    .addComponent(timeJLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currenttimeLabel)
+                    .addComponent(currenttimeJLabel))
+                .addGap(26, 26, 26)
+                .addComponent(moveButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fieldButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(inventoryButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mixitemButton)
+                .addGap(18, 18, 18)
+                .addComponent(tradeboxButton)
+                .addGap(4, 4, 4)
+                .addComponent(offerButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(finditemButton)
+                .addGap(44, 44, 44)
+                .addComponent(logoutButton)
+                .addGap(66, 66, 66))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void fieldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldButtonActionPerformed
+        jDialog1.setVisible(true);
+    }//GEN-LAST:event_fieldButtonActionPerformed
+
+    private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
+        InventoryGUI inventory = null;
+        try {
+            inventory = new InventoryGUI();
+        } catch (IOException ex) {
+            Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(false);
+        inventory.setVisible(true);           
+    }//GEN-LAST:event_inventoryButtonActionPerformed
+
+    private void mixitemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mixitemButtonActionPerformed
+        MixGUI mix = new MixGUI();
+        setVisible(false);
+        mix.setVisible(true);
+    }//GEN-LAST:event_mixitemButtonActionPerformed
+
+    private void tradeboxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeboxButtonActionPerformed
+        TradeBoxGUI tradebox = new TradeBoxGUI();
+        setVisible(false);
+        tradebox.setVisible(true);
+    }//GEN-LAST:event_tradeboxButtonActionPerformed
+
+    private void offerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offerButtonActionPerformed
+        OfferGUI offer = new OfferGUI();
+        setVisible(false);
+        offer.setVisible(true);
+    }//GEN-LAST:event_offerButtonActionPerformed
+
+    private void finditemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finditemButtonActionPerformed
+        TradeBoxGUI tradebox = new TradeBoxGUI();
+        setVisible(false);
+        tradebox.setVisible(true);
+    }//GEN-LAST:event_finditemButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        MainMenuGUI mainmenu = new MainMenuGUI();
+        setVisible(false);
+        mainmenu.setVisible(true);
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +342,26 @@ public class MapGUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel currenttimeJLabel;
+    private javax.swing.JLabel currenttimeLabel;
+    private javax.swing.JButton fieldButton;
+    private javax.swing.JButton finditemButton;
+    private javax.swing.JButton inventoryButton;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logoutButton;
+    private javax.swing.JLabel mapJLabel;
+    private javax.swing.JLabel mapLabel;
+    private javax.swing.JButton mixitemButton;
+    private javax.swing.JButton moveButton;
+    private javax.swing.JButton offerButton;
+    private javax.swing.JLabel positionJLabel;
+    private javax.swing.JLabel positionLabel;
+    private javax.swing.JLabel timeJLabel;
+    private javax.swing.JLabel timeLabel;
+    private javax.swing.JButton tradeboxButton;
+    private javax.swing.JTextField xTextField;
+    private javax.swing.JTextField yTextField;
     // End of variables declaration//GEN-END:variables
 }
 

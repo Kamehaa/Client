@@ -104,7 +104,6 @@ public class MixGUI extends javax.swing.JFrame {
         );
 
         mixButton.setText("Mix");
-        mixButton.setMaximumSize(new java.awt.Dimension(49, 23));
         mixButton.setPreferredSize(new java.awt.Dimension(55, 23));
         mixButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +112,11 @@ public class MixGUI extends javax.swing.JFrame {
         });
 
         backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,6 +234,12 @@ public class MixGUI extends javax.swing.JFrame {
     private void mixButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mixButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mixButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        MapGUI map = new MapGUI();
+        setVisible(false);
+        map.setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments

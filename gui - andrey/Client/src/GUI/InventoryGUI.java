@@ -18,7 +18,7 @@ public class InventoryGUI extends javax.swing.JFrame {
      * Creates new form InventoryGUI
      */
     public InventoryGUI() throws IOException {
-        initComponents();
+        initComponents();     
     }
 
     /**
@@ -217,7 +217,9 @@ public class InventoryGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        MapGUI map = new MapGUI();
+        setVisible(false);
+        map.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
