@@ -29,7 +29,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private int port;
     private JPanel serverPort;
     private boolean changeServer;
-    private JFrame frame;
     /**
      * Creates new form MainMenuGUI
      */
@@ -44,14 +43,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         serverPort.setVisible(changeServer);
         C =  new Client();
         initComponents();
-        frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        frame.add(new TopPanel(), BorderLayout.NORTH);
-        frame.add(new MiddlePanel(), BorderLayout.CENTER);
-        frame.add(new UpdatePanel(), BorderLayout.SOUTH);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
         setVisible(true);
     }
 
