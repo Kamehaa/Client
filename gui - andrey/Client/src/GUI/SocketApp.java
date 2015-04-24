@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package client;
+package GUI;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -15,9 +15,9 @@ import org.json.JSONException;
  * @author ACER PC
  */
 public class SocketApp {
-    public static void main(String[] args) throws IOException, JSONException {
+    /*public static void main(String[] args) throws IOException, JSONException {
         Client C = new Client();
-        JSONMailer mMailer = new JSONMailer("127.0.0.1",2000);
+        JSONMailer mMailer = new JSONMailer("192.168.2.2",3000);
         mMailer.openConnection();
         Scanner in = new Scanner(System.in);
         int input, moveX, moveY;
@@ -124,5 +124,5 @@ public class SocketApp {
             }
         }
         mMailer.closeConnection();
-    }
+    }*/
 }
