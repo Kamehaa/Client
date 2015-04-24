@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import org.json.JSONException;
 
 /**
  *
@@ -21,10 +22,43 @@ public class MapGUI extends javax.swing.JFrame {
     public static int width;
     public static int height;
     public static String[][] codes;
-
+    private String ip;
+    private int port;
+    private Client C;
+    private JSONMailer mailer;
+    
     public MapGUI() {
         super("Map GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ip = "192.168.2.2";
+        port = 3000;
+        C = new Client();
+        mailer = new JSONMailer();
+        Squares squares = new Squares();
+        squares.squareheight = height;
+        squares.squarewidth = width;
+        getContentPane().add(squares);
+        
+        initInput();
+        
+        for(int i = 0; i < width; i++){
+            for (int j = 0; j < height; j++) {
+                squares.addSquare(i * 50 + 30, j * 50 + 30, 50, 50);
+                squares.addCodes(codes[i][j]);
+            }
+        }
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+        initComponents();
+    }
+    public MapGUI(String _ip, int _port, Client _C) {
+        super("Map GUI");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ip = _ip;
+        port = _port;
+        C = _C;
+        mailer = new JSONMailer();
         Squares squares = new Squares();
         squares.squareheight = height;
         squares.squarewidth = width;
@@ -256,6 +290,15 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void fieldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldButtonActionPerformed
         jDialog1.setVisible(true);
+        try {
+            C.field();
+            mailer.send(ip,port,C.getRequest().toString(),3000);
+            C.respond(mailer.getResponse());
+            C.pField();
+        } catch (JSONException ex) {
+            Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jDialog1.setVisible(false);
     }//GEN-LAST:event_fieldButtonActionPerformed
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
