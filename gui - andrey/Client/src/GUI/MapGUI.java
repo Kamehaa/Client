@@ -23,6 +23,8 @@ public class MapGUI extends javax.swing.JFrame {
         super("Map GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Squares squares = new Squares();
+        squares.squareheight = height;
+        squares.squarewidth = width;
         getContentPane().add(squares);
         
         initInput();
@@ -60,16 +62,18 @@ public class MapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Map");
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 608, Short.MAX_VALUE)
+            .addGap(0, 906, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGap(0, 499, Short.MAX_VALUE)
         );
 
         pack();
@@ -126,6 +130,8 @@ class Squares extends JPanel {
    private static final int PREF_H = PREF_W;
    private List<Rectangle> squares = new ArrayList<>();
    private List<String> itemCodes = new ArrayList<>();
+   public int squarewidth = 0;
+   public int squareheight = 0;
    
    public void addSquare(int x, int y, int width, int height) {
       Rectangle rect = new Rectangle(x, y, width, height);
@@ -157,12 +163,11 @@ class Squares extends JPanel {
         g2.draw(rect);
         g2.fillRect(i*50+31, j*50+31,(int)rect.getWidth()-2,(int)rect.getHeight()-2);   
         i++;
-        if(i>=4){ 
+        if(i>=squarewidth){ 
             i=0;
             j++;
-            if(j>=6) j=0;
+            if(j>=squareheight) j=0;
         }
       }
    }
-
 }
