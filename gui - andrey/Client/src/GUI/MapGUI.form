@@ -177,9 +177,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="mapJLabel">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="positionJLabel">
     </Component>

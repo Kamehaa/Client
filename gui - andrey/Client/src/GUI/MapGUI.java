@@ -28,6 +28,9 @@ public class MapGUI extends javax.swing.JFrame {
     public static JSONMailer mailer;
     private static String mapName = "";
     private static boolean visible = false;
+    private int xpos;
+    private int ypos;
+    
     public MapGUI() {
         super("Map GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +63,6 @@ public class MapGUI extends javax.swing.JFrame {
         squares.squarewidth = width;
         getContentPane().add(squares);
         
-        
         initInput();
         
         for(int i = 0; i < width; i++){
@@ -73,7 +75,12 @@ public class MapGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         initComponents();
+        
+        
         mapJLabel.setText(C.getName());
+        xpos = C.getX();
+        ypos = C.getY();
+        positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
     }
     public static void sVisible(){
         visible = !visible;
@@ -330,9 +337,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_mixitemButtonActionPerformed
 
     private void tradeboxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeboxButtonActionPerformed
-        TradeBoxGUI tradebox = new TradeBoxGUI();
-        setVisible(false);
-        tradebox.setVisible(true);
+
     }//GEN-LAST:event_tradeboxButtonActionPerformed
 
     private void offerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offerButtonActionPerformed
@@ -342,9 +347,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_offerButtonActionPerformed
 
     private void finditemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finditemButtonActionPerformed
-        TradeBoxGUI tradebox = new TradeBoxGUI();
-        setVisible(false);
-        tradebox.setVisible(true);
+
     }//GEN-LAST:event_finditemButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -354,7 +357,14 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void moveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveButtonActionPerformed
-        
+        if(xTextField.getText().isEmpty() || yTextField.getText().isEmpty()){
+            //do nothing
+        }
+        else{
+            xpos = Integer.valueOf(xTextField.getText());
+            ypos = Integer.valueOf(yTextField.getText());
+            positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
+        }
     }//GEN-LAST:event_moveButtonActionPerformed
 
     /**
@@ -397,7 +407,6 @@ public class MapGUI extends javax.swing.JFrame {
             @Override
             public void run() {
                 new MapGUI();
-                mapJLabel.setText("lala");
             }
         });
         
@@ -411,7 +420,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logoutButton;
-    public static javax.swing.JLabel mapJLabel;
+    private javax.swing.JLabel mapJLabel;
     private javax.swing.JLabel mapLabel;
     private javax.swing.JButton mixitemButton;
     private javax.swing.JButton moveButton;
