@@ -51,7 +51,7 @@ public class Client{
     private JSONArray inv;
     private String offerToken;
     private ArrayList<Offer> tradeBox = new ArrayList<Offer>();
-    private JSONArray itemFound;
+    private ArrayList<Offer> itemFound = new ArrayList<Offer>();
     
     public Client(){
         mailer = new JSONMailer();
@@ -126,7 +126,7 @@ public class Client{
         return tradeBox;
     }
 
-    public JSONArray getItemFound() {
+    public ArrayList<Offer> getItemFound() {
         return itemFound;
     }
     
@@ -363,6 +363,7 @@ public class Client{
                 case "ok":
                     System.out.println("ok");
                     JSONArray offersJSON = json.getJSONArray("offers");
+                    tradeBox.clear();
                     for (int i=0;i<offersJSON.length();i++) {
                         JSONArray offerJSON = offersJSON.getJSONArray(i);
                         tradeBox.add(new Offer(offerJSON));
@@ -390,7 +391,12 @@ public class Client{
             switch (status) {
                 case "ok":
                     System.out.println("ok");
-                    itemFound = json.getJSONArray("offers");
+                    JSONArray arrJSON = json.getJSONArray("offers");
+                    itemFound.clear();
+                    for (int i=0;i<arrJSON.length();i++) {
+                        JSONArray arJSON = arrJSON.getJSONArray(i);
+                        itemFound.add(new Offer(arJSON));
+                    }
                     break;
                 default:
                     System.out.println("error");
@@ -440,7 +446,7 @@ public class Client{
             status = json.getString("status"); 
             switch (status) {
                 case "ok":
-                    System.out.println("ok");
+                    System.out.println("ok");                   
                     break;
                 case "fail":
                     description = json.getString("description");
@@ -491,6 +497,4 @@ public class Client{
             e.printStackTrace();
         }
     }
-    
-    
 }

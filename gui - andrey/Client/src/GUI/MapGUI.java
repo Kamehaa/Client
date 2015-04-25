@@ -29,7 +29,7 @@ public class MapGUI extends javax.swing.JFrame {
     private static boolean visible = false;
     private int xpos;
     private int ypos;
-    
+    TableIcon tableIcon;
     public MapGUI() {
         super("Map GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,6 +60,8 @@ public class MapGUI extends javax.swing.JFrame {
         positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
         System.out.println(getContentPane().getSize().height);
         System.out.println(getContentPane().getSize().width);
+//        MainMenuGUI.C.tradeBox();
+//        tableIcon = new TableIcon();
 //      playerLabel.setComponentZOrder(squares, 0);
     }
     
@@ -311,9 +313,9 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void tradeboxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeboxButtonActionPerformed
         MainMenuGUI.C.tradeBox();
-        TableIcon tableIcon = new TableIcon();
+        tableIcon = new TableIcon(0);
+        tableIcon.setSize(800, 600);
         tableIcon.setVisible(true);
-        
     }//GEN-LAST:event_tradeboxButtonActionPerformed
 
     private void offerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offerButtonActionPerformed
@@ -324,7 +326,6 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void finditemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finditemButtonActionPerformed
         FindItemGUI fItem = new FindItemGUI();
-        setVisible(false);
         fItem.setVisible(true);
     }//GEN-LAST:event_finditemButtonActionPerformed
 

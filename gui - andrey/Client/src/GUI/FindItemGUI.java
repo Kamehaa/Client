@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Andrey
  */
 public class FindItemGUI extends javax.swing.JFrame {
-
+    private TableIcon tableIcon;
     /**
      * Creates new form FindItemGUI
      */
@@ -317,6 +317,10 @@ public class FindItemGUI extends javax.swing.JFrame {
         int x = getIdFromIcon(slotButton.getIcon().toString());
         if(x >= 0){
             MainMenuGUI.C.sendFind(x);
+            tableIcon = new TableIcon(1);
+            setVisible(false);
+            tableIcon.setSize(800, 600);
+            tableIcon.setVisible(true);
         }
         else{
             JOptionPane.showMessageDialog(new JButton("Ok"),"Error!");
