@@ -4,13 +4,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/FrmTable.java</file>
             <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/Client.java</file>
+            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/OfferGUI.java</file>
+            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/Offer.java</file>
             <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/MainMenuGUI.java</file>
-            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/RollingJSONParser.java</file>
             <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/InventoryGUI.java</file>
-            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/JSONMailer.java</file>
+            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/FindItemGUI.java</file>
+            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/MixGUI.java</file>
             <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/MapGUI.java</file>
-            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/SocketApp.java</file>
+            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/TableIcon.java</file>
+            <file>file:/D:/Tugas/IF/Semester%206/Sister/Client/gui%20-%20andrey/Client/src/GUI/TradeBoxGUI.java</file>
         </group>
     </open-files>
 </project-private>

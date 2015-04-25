@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,9 @@ public class TableIcon extends JFrame
     public Object[][] data;
     public ImageIcon[] icons;
     public static TableIcon frame;
-    
+    public JButton btnAdd;
+    public JPanel southPanel;
+        
     public TableIcon(int x)
     {
         
@@ -68,6 +71,16 @@ public class TableIcon extends JFrame
         
         JScrollPane scrollPane = new JScrollPane( table );
         getContentPane().add( scrollPane );
+        southPanel = new JPanel();
+        btnAdd = new JButton("Cancel");
+        southPanel.add(btnAdd);
+        add(southPanel,BorderLayout.SOUTH);
+        btnAdd.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
     }
     
     public void InitData(){
@@ -167,19 +180,44 @@ public class TableIcon extends JFrame
                 MainMenuGUI.C.setOfferToken(tokens[Integer.parseInt(button.getName())]);
                 if(label.equals("Fetch")){
                     MainMenuGUI.C.fetchItem();
-                    JOptionPane.showMessageDialog( button , "Item Fetched!");
+                    if(MainMenuGUI.C.getStatus().equals("ok")){
+                        JOptionPane.showMessageDialog( button , "Item Fetched");
+                    }
+                    else if(MainMenuGUI.C.getStatus().equals("fail")){
+                        JOptionPane.showMessageDialog( button , MainMenuGUI.C.getDescription());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog( button , "Error!");
+                    }
                 }
                 else if(label.equals("Cancel")){
                     MainMenuGUI.C.cancelOffer();
-                    JOptionPane.showMessageDialog( button , "Offer Canceled!");
+                    if(MainMenuGUI.C.getStatus().equals("ok")){
+                        JOptionPane.showMessageDialog( button , "Offer Canceled");
+                    }
+                    else if(MainMenuGUI.C.getStatus().equals("fail")){
+                        JOptionPane.showMessageDialog( button , MainMenuGUI.C.getDescription());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog( button , "Error!");
+                    }
                 }
                 else if(label.equals("Accept")){
                     MainMenuGUI.C.sendAccept();
-                    JOptionPane.showMessageDialog( button , "ItemAccepted");
+                    if(MainMenuGUI.C.getStatus().equals("ok")){
+                        JOptionPane.showMessageDialog( button , "Item Accepted");
+                    }
+                    else if(MainMenuGUI.C.getStatus().equals("fail")){
+                        JOptionPane.showMessageDialog( button , MainMenuGUI.C.getDescription());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog( button , "Error!");
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog( button , "Error!");
                 }
+                setVisible(false);
             }
             isPushed = false;
             return label;

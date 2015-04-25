@@ -56,7 +56,8 @@ public class FrmTable extends JFrame{
 
         add(northPanel, BorderLayout.NORTH);
         add(eastPanel, BorderLayout.EAST);
-        add(pane,BorderLayout.CENTER);
+        add(eastPanel,BorderLayout.CENTER);
+        add(pane,BorderLayout.SOUTH);
         tableModel = new DefaultTableModel(new Object[]{"OfferedItem","NumberOffered","DemandedItem","NumberDemanded","Act"},0);
         table.setModel(tableModel);
         btnAdd.addActionListener(new ActionListener(){
