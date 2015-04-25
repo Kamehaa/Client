@@ -6,6 +6,7 @@
 
 package GUI;
 
+import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -41,7 +42,7 @@ public class Client{
     // items attribute
     private JSONArray inv;
     private String offerToken;
-    private JSONArray tradeBox;
+    private ArrayList<Offer> tradeBox = new ArrayList<Offer>();
     private JSONArray itemFound;
     
     public Client(){
@@ -113,7 +114,7 @@ public class Client{
         return deltaTime;
     }
 
-    public JSONArray getTradeBox() {
+    public ArrayList<Offer> getTradeBox() {
         return tradeBox;
     }
 
@@ -352,7 +353,11 @@ public class Client{
             switch (status) {
                 case "ok":
                     System.out.println("ok");
-                    tradeBox = json.getJSONArray("offers");
+                    JSONArray offersJSON = json.getJSONArray("offers");
+                    for (int i=0;i<offersJSON.length();i++) {
+                        JSONArray offerJSON = offersJSON.getJSONArray(i);
+                        tradeBox.add(new Offer(offerJSON));
+                    }
                     break;
                 default:
                     System.out.println("error");
@@ -477,4 +482,6 @@ public class Client{
             e.printStackTrace();
         }
     }
+    
+    
 }
