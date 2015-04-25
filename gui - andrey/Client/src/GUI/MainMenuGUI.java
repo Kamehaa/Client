@@ -19,8 +19,7 @@ import org.json.JSONException;
  */
 public class MainMenuGUI extends javax.swing.JFrame {
     //param
-    Client C;
-    private JSONMailer mailer = new JSONMailer();
+    public static Client C;
     private String username;
     private String password;
     private String ip;
@@ -32,14 +31,14 @@ public class MainMenuGUI extends javax.swing.JFrame {
      */
     public MainMenuGUI() {
         //add(serverPort,BorderLayout.NORTH);
-        ip="192.168.2.2";
-        port = 3000;
         username = "";
         password = "";
+        ip ="192.168.2.2";
+        port = 3000;
         changeServer = false;
         serverPort = new JPanel();
         serverPort.setVisible(changeServer);
-        C =  new Client();
+        C =  new Client(ip,port);
         initComponents();
         setVisible(true);
     }
@@ -226,38 +225,20 @@ public class MainMenuGUI extends javax.swing.JFrame {
         if(!usernameTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()){
             username = usernameTextField.getText();
             password = passwordTextField.getText();
-            try {
-                C.logIn(username, password);
-                mailer.send(ip,port,C.getRequest().toString(),3000);
-                C.respond(mailer.getResponse());
-                C.pLogIn();
-                System.out.println(C.getToken());
-                C.inventory();
-                mailer.send(ip,port,C.getRequest().toString(),3000);
-                C.respond(mailer.getResponse());
-                C.pInventory();
-                C.map();
-                mailer.send(ip,port,C.getRequest().toString(),3000);
-                C.respond(mailer.getResponse());
-                C.pMap();
-                System.out.println(C.getToken());
-            } catch (JSONException ex) {
-                Logger.getLogger(MainMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            C.logIn(username, password);
         }
-        System.out.println("user : " + username +" pass: "+password);
-        
-        if(!C.getToken().isEmpty())
+        if(C.getStatus().equals("ok"))
         {       
-            MapGUI map = new MapGUI(ip, port, C);
+            MapGUI map = new MapGUI();
             setVisible(false);
         }
-        else if(C.getToken() == null){
-            
-        }
-        else
-        {
-            
+        else{
+            if(C.getStatus().equals("fail")){
+                
+            }
+            else{
+                
+            }
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -265,16 +246,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
         if(!usernameTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()){
             username = usernameTextField.getText();
             password = passwordTextField.getText();
-            try {
-                C.signUp(username, password);
-                mailer.send(ip,port,C.getRequest().toString(),3000);
-                C.respond(mailer.getResponse());
-                C.pSignUp();
-            } catch (JSONException ex) {
-                Logger.getLogger(MainMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            C.signUp(username, password);  
         }
-        System.out.println("user : " + username +" pass: "+password);
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
@@ -300,40 +273,15 @@ public class MainMenuGUI extends javax.swing.JFrame {
             serverDialog.setVisible(false);
             ip = ipTextField.getText().toString();
             port = Integer.parseInt(portTextField.getText().toString());
+            C.setIp(ip);
+            C.setPort(port);
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ipTextFieldActionPerformed
-    public class TopPanel extends JPanel {
-
-        public TopPanel() {
-            setBackground(Color.red);
-            add(new JLabel("I'm on top"));
-        }
-
-    }
-
-    public class MiddlePanel extends JPanel {
-
-        public MiddlePanel() {
-            setLayout(new BorderLayout());
-            add(new JScrollPane(new JTable(new DefaultTableModel(new Object[]{"A", "B", "C"}, 5))));
-        }
-
-    }
-
-    public class UpdatePanel extends JPanel {
-
-        public UpdatePanel() {
-            for (int index = 0; index < 5; index++) {
-                add(new JLabel(Integer.toString(index)));
-                add(new JTextField(5));
-            }
-            add(new JButton("Button"));
-        }            
-    }        
+        
     /**
      * @param args the command line arguments
      */

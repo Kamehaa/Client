@@ -5,13 +5,17 @@
 package GUI;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import org.json.JSONException;
 
 /**
@@ -22,10 +26,6 @@ public class MapGUI extends javax.swing.JFrame {
     public static int width;
     public static int height;
     public static String[][] codes;
-    public static String ip;
-    public static int port;
-    public static Client C;
-    public static JSONMailer mailer;
     private static String mapName = "";
     private static boolean visible = false;
     private int xpos;
@@ -34,7 +34,6 @@ public class MapGUI extends javax.swing.JFrame {
     public MapGUI() {
         super("Map GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mailer = new JSONMailer();
         Squares squares = new Squares();
         squares.squareheight = height;
         squares.squarewidth = width;
@@ -50,38 +49,13 @@ public class MapGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         initComponents();
-    }
-    public MapGUI(String _ip, int _port, Client _C) {
-        super("Map GUI");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ip = _ip;
-        port = _port;
-        C = _C;
-        mailer = new JSONMailer();
-        Squares squares = new Squares();
-        squares.squareheight = height;
-        squares.squarewidth = width;
-        getContentPane().add(squares);
         
-        initInput();
-        
-        for(int i = 0; i < width; i++){
-            for (int j = 0; j < height; j++) {
-                squares.addSquare(i * 50 + 30, j * 50 + 30, 50, 50);
-                squares.addCodes(codes[i][j]);
-            }
-        }
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
-        initComponents();
-        
-        
-        mapJLabel.setText(C.getName());
-        xpos = C.getX();
-        ypos = C.getY();
+        mapJLabel.setText(MainMenuGUI.C.getMapName());
+        xpos = MainMenuGUI.C.getX();
+        ypos = MainMenuGUI.C.getY();
         positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
     }
+    
     public static void sVisible(){
         visible = !visible;
     }
@@ -306,20 +280,14 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void fieldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldButtonActionPerformed
         jDialog1.setVisible(true);
-        try {
-            C.field();
-            mailer.send(ip,port,C.getRequest().toString(),3000);
-            C.respond(mailer.getResponse());
-            C.pField();
-        } catch (JSONException ex) {
-            Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        MainMenuGUI.C.field();
         jDialog1.setVisible(false);
     }//GEN-LAST:event_fieldButtonActionPerformed
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
         InventoryGUI inventory = null;
         try {
+            MainMenuGUI.C.inventory();
             inventory = new InventoryGUI();
         } catch (IOException ex) {
             Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -363,7 +331,26 @@ public class MapGUI extends javax.swing.JFrame {
         else{
             xpos = Integer.valueOf(xTextField.getText());
             ypos = Integer.valueOf(yTextField.getText());
-            positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
+            MainMenuGUI.C.move(xpos,ypos);
+            long temp = MainMenuGUI.C.getServerTime() - System.currentTimeMillis()/1000;
+            if(MainMenuGUI.C.getStatus().equals("ok")){
+                if(temp > MainMenuGUI.C.getDeltaTime()){
+                    System.out.println("Masuk");
+                    ActionListener listener = new ActionListener(){
+                        public void actionPerformed(ActionEvent event){
+                             positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
+                        }
+                    };
+                    Timer timer = new Timer((int) (temp-MainMenuGUI.C.getDeltaTime()) * 1000, listener);
+                    timer.setRepeats(false);
+                    timer.start();
+                } else {
+                    positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
+                }
+            }
+            else{
+                
+            }
         }
     }//GEN-LAST:event_moveButtonActionPerformed
 

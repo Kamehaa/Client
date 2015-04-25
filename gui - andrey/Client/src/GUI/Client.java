@@ -14,7 +14,57 @@ import org.json.JSONObject;
  * @author ACER PC
  */
 public class Client{
+    
+    // socket attribute
+    private JSONMailer mailer;
+    private String ip;
+    private int port;
+        
+    // request & response attribute
+    private JSONObject json;
+    private JSONObject request; 
+    private String status;
+    private String description;
+        
+    // login attribute
+    private int x;
+    private int y;
+    private long serverTime;
+    private long deltaTime;
+    private String token;
+        
+    // map attribute
+    private String mapName;
+    private int mapW;
+    private int mapH;
+        
+    // items attribute
+    private JSONArray inv;
+    private String offerToken;
+    private JSONArray tradeBox;
+    private JSONArray itemFound;
+    
+    public Client(){
+        mailer = new JSONMailer();
+        ip = "192.168.2.2";
+        port = 3000;
+    }
+    
+    public Client(String _ip, int _port){
+        mailer = new JSONMailer();
+        ip = _ip;
+        port = _port;
+    }
+    
+    // getter & setter
+    public int getX() {
+        return x;
+    }
 
+    public int getY() {
+        return y;
+    }
+    
     public String getIp() {
         return ip;
     }
@@ -71,35 +121,6 @@ public class Client{
         return itemFound;
     }
     
-    // socket attribute
-    private JSONMailer mailer;
-    private String ip;
-    private int port;
-        
-    // request & response attribute
-    private JSONObject json;
-    private JSONObject request; 
-    private String status;
-    private String description;
-        
-    // login attribute
-    private int x;
-    private int y;
-    private long serverTime;
-    private long deltaTime;
-    private String token;
-        
-    // map attribute
-    private String mapName;
-    private int mapW;
-    private int mapH;
-        
-    // items attribute
-    private JSONArray inv;
-    private String offerToken;
-    private JSONArray tradeBox;
-    private JSONArray itemFound;
-        
     // 2
     public void signUp(String username, String password){
         try{
@@ -143,7 +164,7 @@ public class Client{
                     x = json.getInt("x");
                     y = json.getInt("y");
                     serverTime = json.getLong("time");
-                    deltaTime = System.currentTimeMillis()/1000 - serverTime;
+                    deltaTime = serverTime - System.currentTimeMillis()/1000;
                     System.out.println("login success");
                     break;
                 case "fail":

@@ -223,7 +223,7 @@ public class MixGUI extends javax.swing.JFrame {
                         .addComponent(manacrystalCount)
                         .addGap(97, 97, 97)
                         .addComponent(philosopherstoneCount)
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(slot1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,7 +233,7 @@ public class MixGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(mixButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(backButton))
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -273,7 +273,7 @@ public class MixGUI extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(60, 60, 60)
                             .addComponent(potionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,9 +312,7 @@ public class MixGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(gemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(gemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(philosopherstoneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -339,14 +337,7 @@ public class MixGUI extends javax.swing.JFrame {
         if(slot1.getIcon()!= null & slot2.getIcon() != null){
             int id1 = getIdFromIcon(slot1.getIcon().toString());
             int id2 = getIdFromIcon(slot2.getIcon().toString());
-            try {
-                MapGUI.C.mixItem(id1,id2);
-                MapGUI.mailer.send(MapGUI.ip,MapGUI.port,MapGUI.C.getRequest().toString(),3000);
-                MapGUI.C.respond(mailer.getResponse());
-                MapGUI.C.pMixItem();
-            } catch (JSONException ex) {
-                Logger.getLogger(MixGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            MainMenuGUI.C.mixItem(id1,id2);                
         }
     }//GEN-LAST:event_mixButtonActionPerformed
 
