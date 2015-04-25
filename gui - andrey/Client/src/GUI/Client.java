@@ -37,6 +37,14 @@ public class Client{
     // map attribute
     private String mapName;
     private int mapW;
+
+    public int getMapH() {
+        return mapH;
+    }
+
+    public int getMapW() {
+        return mapW;
+    }
     private int mapH;
         
     // items attribute

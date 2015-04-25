@@ -16,7 +16,53 @@ public class OfferGUI extends javax.swing.JFrame {
     public OfferGUI() {
         initComponents();
     }
-
+    public int getIdFromIcon(String s){
+        int x = 0;
+        int pos1 = s.length()-1;
+        int pos2 = s.length()-1;
+        String temp;
+        while(s.charAt(pos1)!='/'){
+            pos1--;
+        }
+        while(s.charAt(pos2)!='.'){
+            pos2--;
+        }
+        temp = s.substring(pos1+1,pos2);
+        if(temp.equals("honey")){
+            x = 0 ;
+        }
+        else if (temp.equals("herbs")){
+            x = 1 ;
+        }
+        else if (temp.equals("clay")){
+            x = 2 ;
+        }
+        else if (temp.equals("mineral")){
+            x = 3 ;
+        }
+        else if (temp.equals("potion")){
+            x = 4 ;
+        }
+        else if (temp.equals("incense")){
+            x = 5 ;
+        }
+        else if (temp.equals("gems")){
+            x = 6 ;
+        }
+        else if (temp.equals("lifeelixir")){
+            x = 7 ;
+        }
+        else if (temp.equals("manacrystal")){
+            x = 8 ;
+        }
+        else if (temp.equals("philosopherstone")){
+            x = 9 ;
+        }
+        else {
+            x = -1;
+        }
+        return x;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,92 +72,137 @@ public class OfferGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        honeyLabel = new javax.swing.JLabel();
-        herbsImage = new javax.swing.JLabel();
-        clayImage = new javax.swing.JLabel();
-        mineralImage = new javax.swing.JLabel();
-        potionImage = new javax.swing.JLabel();
-        incenseImage = new javax.swing.JLabel();
-        gemsImage = new javax.swing.JLabel();
-        lifeelixirImage = new javax.swing.JLabel();
-        manacrystalImage = new javax.swing.JLabel();
-        philosopherstoneImage = new javax.swing.JLabel();
-        slotPanel1 = new javax.swing.JPanel();
-        slotPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        offeredLabel = new javax.swing.JLabel();
+        demandedLabel = new javax.swing.JLabel();
         offeredSpinner = new javax.swing.JSpinner();
         demandedSpinner = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        okButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        honeyButton = new javax.swing.JButton();
+        herbsButton = new javax.swing.JButton();
+        clayButton = new javax.swing.JButton();
+        mineralButton = new javax.swing.JButton();
+        potionButton = new javax.swing.JButton();
+        incenseButton = new javax.swing.JButton();
+        gemsButton = new javax.swing.JButton();
+        lifeelixirButton = new javax.swing.JButton();
+        manacrystalButton = new javax.swing.JButton();
+        philosopherstoneButton = new javax.swing.JButton();
+        slot1 = new javax.swing.JButton();
+        slot2 = new javax.swing.JButton();
+        honeyCount = new javax.swing.JLabel();
+        herbsCount = new javax.swing.JLabel();
+        clayCount = new javax.swing.JLabel();
+        mineralCount = new javax.swing.JLabel();
+        potionCount = new javax.swing.JLabel();
+        incenseCount = new javax.swing.JLabel();
+        gemsCount = new javax.swing.JLabel();
+        lifeelixirCount = new javax.swing.JLabel();
+        manacrystalCount = new javax.swing.JLabel();
+        philosopherstoneCount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        honeyLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/honey.png"))); // NOI18N
+        offeredLabel.setText("Offered Item");
 
-        herbsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/herbs.png"))); // NOI18N
+        demandedLabel.setText("Demanded Item");
 
-        clayImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clay.png"))); // NOI18N
-
-        mineralImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mineral.png"))); // NOI18N
-
-        potionImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/potion.png"))); // NOI18N
-
-        incenseImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incense.png"))); // NOI18N
-
-        gemsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gems.png"))); // NOI18N
-
-        lifeelixirImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lifeelixir.png"))); // NOI18N
-
-        manacrystalImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/manacrystal.png"))); // NOI18N
-
-        philosopherstoneImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/philosopherstone.png"))); // NOI18N
-
-        slotPanel1.setBackground(new java.awt.Color(255, 255, 153));
-        slotPanel1.setPreferredSize(new java.awt.Dimension(85, 85));
-
-        javax.swing.GroupLayout slotPanel1Layout = new javax.swing.GroupLayout(slotPanel1);
-        slotPanel1.setLayout(slotPanel1Layout);
-        slotPanel1Layout.setHorizontalGroup(
-            slotPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
-        );
-        slotPanel1Layout.setVerticalGroup(
-            slotPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
-        );
-
-        slotPanel2.setBackground(new java.awt.Color(255, 255, 153));
-        slotPanel2.setPreferredSize(new java.awt.Dimension(85, 85));
-
-        javax.swing.GroupLayout slotPanel2Layout = new javax.swing.GroupLayout(slotPanel2);
-        slotPanel2.setLayout(slotPanel2Layout);
-        slotPanel2Layout.setHorizontalGroup(
-            slotPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
-        );
-        slotPanel2Layout.setVerticalGroup(
-            slotPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
-        );
-
-        jLabel1.setText("Offered Item");
-
-        jLabel2.setText("Demanded Item");
-
-        jButton1.setText("OK");
-        jButton1.setPreferredSize(new java.awt.Dimension(55, 23));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        okButton.setText("OK");
+        okButton.setPreferredSize(new java.awt.Dimension(55, 23));
+        okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                okButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        honeyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/honey.png"))); // NOI18N
+        honeyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                honeyButtonActionPerformed(evt);
+            }
+        });
+
+        herbsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/herbs.png"))); // NOI18N
+        herbsButton.setPreferredSize(new java.awt.Dimension(85, 85));
+        herbsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                herbsButtonActionPerformed(evt);
+            }
+        });
+
+        clayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clay.png"))); // NOI18N
+        clayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clayButtonActionPerformed(evt);
+            }
+        });
+
+        mineralButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mineral.png"))); // NOI18N
+        mineralButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mineralButtonActionPerformed(evt);
+            }
+        });
+
+        potionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/potion.png"))); // NOI18N
+        potionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                potionButtonActionPerformed(evt);
+            }
+        });
+
+        incenseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incense.png"))); // NOI18N
+        incenseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incenseButtonActionPerformed(evt);
+            }
+        });
+
+        gemsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gems.png"))); // NOI18N
+        gemsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gemsButtonActionPerformed(evt);
+            }
+        });
+
+        lifeelixirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lifeelixir.png"))); // NOI18N
+        lifeelixirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lifeelixirButtonActionPerformed(evt);
+            }
+        });
+
+        manacrystalButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/manacrystal.png"))); // NOI18N
+        manacrystalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manacrystalButtonActionPerformed(evt);
+            }
+        });
+
+        philosopherstoneButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/philosopherstone.png"))); // NOI18N
+        philosopherstoneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                philosopherstoneButtonActionPerformed(evt);
+            }
+        });
+
+        slot1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                slot1ActionPerformed(evt);
+            }
+        });
+
+        slot2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                slot2ActionPerformed(evt);
             }
         });
 
@@ -120,107 +211,259 @@ public class OfferGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(honeyLabel)
-                    .addComponent(incenseImage))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(herbsImage)
-                    .addComponent(gemsImage))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(clayImage)
-                    .addComponent(lifeelixirImage))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mineralImage)
-                    .addComponent(manacrystalImage))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(philosopherstoneImage)
-                    .addComponent(potionImage))
-                .addContainerGap(67, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jLabel1)
-                        .addGap(51, 51, 51))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(offeredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)))
-                .addComponent(slotPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(slotPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(incenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(honeyCount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(incenseCount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(honeyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(herbsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gemsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(herbsCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(gemsCount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lifeelixirCount, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(clayCount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(clayButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lifeelixirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(manacrystalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(mineralCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(mineralButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(manacrystalCount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(potionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(philosopherstoneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(potionCount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(philosopherstoneCount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(demandedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77))
+                        .addGap(148, 148, 148)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(offeredLabel)
+                            .addComponent(offeredSpinner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addComponent(slot1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(slot2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(demandedLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(demandedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(potionImage)
-                    .addComponent(mineralImage)
-                    .addComponent(clayImage)
-                    .addComponent(herbsImage)
-                    .addComponent(honeyLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(incenseImage)
-                    .addComponent(gemsImage)
-                    .addComponent(lifeelixirImage)
-                    .addComponent(manacrystalImage)
-                    .addComponent(philosopherstoneImage))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(39, 39, 39)
+                        .addComponent(honeyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(slotPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(slotPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(offeredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(herbsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clayButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mineralButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(potionButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addComponent(honeyCount, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(incenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(incenseCount, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(potionCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(herbsCount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(clayCount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mineralCount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(demandedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(gemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)))))
-                .addContainerGap(119, Short.MAX_VALUE))
+                                .addComponent(gemsCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(36, 36, 36))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(manacrystalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lifeelixirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(philosopherstoneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(manacrystalCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lifeelixirCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(philosopherstoneCount, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(demandedLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(backButton))
+                            .addComponent(demandedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(slot2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(slot1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(offeredLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(offeredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(76, 76, 76))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int offeredID = getIdFromIcon(slot1.getIcon().toString());
+        int demandedID = getIdFromIcon(slot2.getIcon().toString());
+            
+        if(offeredID >= 0 && demandedID >= 0){
+            int nDemanded = Integer.parseInt(demandedLabel.getText());
+            int nOffered = Integer.parseInt(offeredLabel.getText());
+            if(nDemanded > 0 && nOffered > 0){
+                MainMenuGUI.C.offer(offeredID, nOffered, demandedID, nDemanded);
+            }
+            else{
+                
+            }
+        }
+        else{
+            
+        }
+    }//GEN-LAST:event_okButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         MapGUI map = new MapGUI();
         setVisible(false);
         map.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void manacrystalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manacrystalButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == manacrystalButton.getIcon()){
+            slot1.setIcon(manacrystalButton.getIcon());
+        }
+        else{
+            slot2.setIcon(manacrystalButton.getIcon());
+        }
+    }//GEN-LAST:event_manacrystalButtonActionPerformed
+
+    private void slot1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slot1ActionPerformed
+        if (slot1.getIcon() != null) {
+            slot1.setIcon(null);
+        }
+    }//GEN-LAST:event_slot1ActionPerformed
+
+    private void honeyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_honeyButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == honeyButton.getIcon()){
+            slot1.setIcon(honeyButton.getIcon());
+        }
+        else{
+            slot2.setIcon(honeyButton.getIcon());
+        }
+    }//GEN-LAST:event_honeyButtonActionPerformed
+
+    private void herbsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_herbsButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == herbsButton.getIcon()){
+            slot1.setIcon(herbsButton.getIcon());
+        }
+        else{
+            slot2.setIcon(herbsButton.getIcon());
+        }
+    }//GEN-LAST:event_herbsButtonActionPerformed
+
+    private void clayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clayButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == clayButton.getIcon()){
+            slot1.setIcon(clayButton.getIcon());
+        }
+        else{
+            slot2.setIcon(clayButton.getIcon());
+        }
+    }//GEN-LAST:event_clayButtonActionPerformed
+
+    private void mineralButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mineralButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == mineralButton.getIcon()){
+            slot1.setIcon(mineralButton.getIcon());
+        }
+        else{
+            slot2.setIcon(mineralButton.getIcon());
+        }
+    }//GEN-LAST:event_mineralButtonActionPerformed
+
+    private void potionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_potionButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == potionButton.getIcon()){
+            slot1.setIcon(potionButton.getIcon());
+        }
+        else{
+            slot2.setIcon(potionButton.getIcon());
+        }
+    }//GEN-LAST:event_potionButtonActionPerformed
+
+    private void incenseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incenseButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == incenseButton.getIcon()){
+            slot1.setIcon(incenseButton.getIcon());
+        }
+        else{
+            slot2.setIcon(incenseButton.getIcon());
+        }
+    }//GEN-LAST:event_incenseButtonActionPerformed
+
+    private void gemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gemsButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == gemsButton.getIcon()){
+            slot1.setIcon(gemsButton.getIcon());
+        }
+        else{
+            slot2.setIcon(gemsButton.getIcon());
+        }
+    }//GEN-LAST:event_gemsButtonActionPerformed
+
+    private void lifeelixirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lifeelixirButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == lifeelixirButton.getIcon()){
+            slot1.setIcon(lifeelixirButton.getIcon());
+        }
+        else{
+            slot2.setIcon(lifeelixirButton.getIcon());
+        }
+    }//GEN-LAST:event_lifeelixirButtonActionPerformed
+
+    private void slot2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slot2ActionPerformed
+        if(slot2.getIcon() != null){
+            slot2.setIcon(null); 
+        }
+    }//GEN-LAST:event_slot2ActionPerformed
+
+    private void philosopherstoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_philosopherstoneButtonActionPerformed
+        if(slot1.getIcon() == null || slot1.getIcon() == philosopherstoneButton.getIcon()){
+            slot1.setIcon(philosopherstoneButton.getIcon());
+        }
+        else{
+            slot2.setIcon(philosopherstoneButton.getIcon());
+        }
+    }//GEN-LAST:event_philosopherstoneButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,23 +507,33 @@ public class OfferGUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel clayImage;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton clayButton;
+    private javax.swing.JLabel clayCount;
+    private javax.swing.JLabel demandedLabel;
     private javax.swing.JSpinner demandedSpinner;
-    private javax.swing.JLabel gemsImage;
-    private javax.swing.JLabel herbsImage;
-    private javax.swing.JLabel honeyLabel;
-    private javax.swing.JLabel incenseImage;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lifeelixirImage;
-    private javax.swing.JLabel manacrystalImage;
-    private javax.swing.JLabel mineralImage;
+    private javax.swing.JButton gemsButton;
+    private javax.swing.JLabel gemsCount;
+    private javax.swing.JButton herbsButton;
+    private javax.swing.JLabel herbsCount;
+    private javax.swing.JButton honeyButton;
+    private javax.swing.JLabel honeyCount;
+    private javax.swing.JButton incenseButton;
+    private javax.swing.JLabel incenseCount;
+    private javax.swing.JButton lifeelixirButton;
+    private javax.swing.JLabel lifeelixirCount;
+    private javax.swing.JButton manacrystalButton;
+    private javax.swing.JLabel manacrystalCount;
+    private javax.swing.JButton mineralButton;
+    private javax.swing.JLabel mineralCount;
+    private javax.swing.JLabel offeredLabel;
     private javax.swing.JSpinner offeredSpinner;
-    private javax.swing.JLabel philosopherstoneImage;
-    private javax.swing.JLabel potionImage;
-    private javax.swing.JPanel slotPanel1;
-    private javax.swing.JPanel slotPanel2;
+    private javax.swing.JButton okButton;
+    private javax.swing.JButton philosopherstoneButton;
+    private javax.swing.JLabel philosopherstoneCount;
+    private javax.swing.JButton potionButton;
+    private javax.swing.JLabel potionCount;
+    private javax.swing.JButton slot1;
+    private javax.swing.JButton slot2;
     // End of variables declaration//GEN-END:variables
 }

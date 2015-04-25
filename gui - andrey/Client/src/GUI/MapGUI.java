@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,25 +34,33 @@ public class MapGUI extends javax.swing.JFrame {
         super("Map GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Squares squares = new Squares();
-        squares.squareheight = height;
-        squares.squarewidth = width;
+        squares.squareheight = MainMenuGUI.C.getMapH();
+        squares.squarewidth = MainMenuGUI.C.getMapW();
         getContentPane().add(squares);
         initInput();
-        for(int i = 0; i < width; i++){
-            for (int j = 0; j < height; j++) {
-                squares.addSquare(i * 50 + 30, j * 50 + 30, 50, 50);
-                squares.addCodes(codes[i][j]);
-            }
-        }
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
         initComponents();
-        
-        mapJLabel.setText(MainMenuGUI.C.getMapName());
+        add(playerLabel,0);
+        playerLabel.setVisible(false);
+        for(int i = 0; i < width; i++){
+            for (int j = 0; j < height; j++) {
+                squares.addSquare(i * 100 + 50, j * 100 + 50, 100, 100);
+                squares.addCodes(codes[i][j]);
+            }
+        }
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         xpos = MainMenuGUI.C.getX();
         ypos = MainMenuGUI.C.getY();
+        playerLabel.setBounds(getContentPane().getSize().width, ypos*100+50, 50, 50);
+        playerLabel.setVisible(true);
+        mapJLabel.setText(MainMenuGUI.C.getMapName());
         positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
+        System.out.println(getContentPane().getSize().height);
+        System.out.println(getContentPane().getSize().width);
+//      playerLabel.setComponentZOrder(squares, 0);
     }
     
     public static void sVisible(){
@@ -61,7 +68,7 @@ public class MapGUI extends javax.swing.JFrame {
     }
     public static void initInput(){        
         width = 4;
-        height = 6;
+        height = 4;
         codes = new String[width][height];
         for(int i = 0; i<width; i++){
             for(int j = 0; j<height; j++){
@@ -80,7 +87,7 @@ public class MapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jDialog1 = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
+        playerLabel = new javax.swing.JLabel();
         mapLabel = new javax.swing.JLabel();
         positionLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
@@ -100,27 +107,23 @@ public class MapGUI extends javax.swing.JFrame {
         finditemButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
 
-        jLabel1.setText("baaaakekok");
-
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jLabel1)
-                .addContainerGap(197, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jLabel1)
-                .addContainerGap(155, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Map");
+        setPreferredSize(new java.awt.Dimension(1200, 600));
+        setResizable(false);
+
+        playerLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/choc.png"))); // NOI18N
 
         mapLabel.setText("Map: ");
 
@@ -195,84 +198,90 @@ public class MapGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addComponent(playerLabel)
+                .addGap(369, 369, 369)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(672, 672, 672)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(moveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inventoryButton, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fieldButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(moveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(inventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mixitemButton, javax.swing.GroupLayout.DEFAULT_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tradeboxButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(offerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finditemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(mixitemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(mapLabel)
+                        .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tradeboxButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(offerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(finditemButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(currenttimeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                            .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(606, 606, 606)
+                        .addComponent(currenttimeLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(positionLabel)
-                            .addComponent(timeLabel)
-                            .addComponent(currenttimeLabel)
-                            .addComponent(mapLabel))
-                        .addGap(18, 18, 18)
+                            .addComponent(positionLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(timeLabel))
+                        .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(currenttimeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(timeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(positionJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(timeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mapLabel)
-                    .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(playerLabel)
+                .addGap(279, 279, 279))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mapLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(positionLabel)
-                    .addComponent(positionJLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(positionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(positionJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timeLabel)
-                    .addComponent(timeJLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(currenttimeLabel)
-                    .addComponent(currenttimeJLabel))
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(currenttimeLabel))
+                    .addComponent(currenttimeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
                 .addComponent(moveButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fieldButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inventoryButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mixitemButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tradeboxButton)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(offerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(finditemButton)
-                .addGap(44, 44, 44)
+                .addGap(40, 40, 40)
                 .addComponent(logoutButton)
-                .addContainerGap())
+                .addGap(114, 114, 114))
         );
 
         pack();
@@ -339,6 +348,7 @@ public class MapGUI extends javax.swing.JFrame {
                     ActionListener listener = new ActionListener(){
                         public void actionPerformed(ActionEvent event){
                              positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
+                             playerLabel.setBounds(xpos*100+50, ypos*100+50, 50, 50);
                         }
                     };
                     Timer timer = new Timer((int) (temp-MainMenuGUI.C.getDeltaTime()) * 1000, listener);
@@ -405,13 +415,13 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JButton finditemButton;
     private javax.swing.JButton inventoryButton;
     private javax.swing.JDialog jDialog1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel mapJLabel;
     private javax.swing.JLabel mapLabel;
     private javax.swing.JButton mixitemButton;
     private javax.swing.JButton moveButton;
     private javax.swing.JButton offerButton;
+    private javax.swing.JLabel playerLabel;
     private javax.swing.JLabel positionJLabel;
     private javax.swing.JLabel positionLabel;
     private javax.swing.JLabel timeJLabel;
@@ -427,8 +437,8 @@ class Squares extends JPanel {
    private static final int PREF_H = PREF_W;
    private List<Rectangle> squares = new ArrayList<>();
    private List<String> itemCodes = new ArrayList<>();
-   public int squarewidth = 0;
-   public int squareheight = 0;
+   public int squarewidth;
+   public int squareheight;
    
    public void addSquare(int x, int y, int width, int height) {
       Rectangle rect = new Rectangle(x, y, width, height);
@@ -452,12 +462,12 @@ class Squares extends JPanel {
       int i = 0 , j = 0;
       for (Rectangle rect : squares) {
         g2.draw(rect);
-        g2.fillRect(i*50+31, j*50+31,(int)rect.getWidth()-2,(int)rect.getHeight()-2);   
+        g2.fillRect(i*100+52, j*100+52,(int)rect.getWidth()-2,(int)rect.getHeight()-2);   
         i++;
-        if(i>=squarewidth){ 
+        if(i>=squarewidth-1){ 
             i=0;
             j++;
-            if(j>=squareheight) j=0;
+            if(j>=squareheight-1) j=0;
         }
       }
    }

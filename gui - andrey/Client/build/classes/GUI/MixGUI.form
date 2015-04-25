@@ -10,7 +10,6 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -132,11 +131,11 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="honeyCount" min="-2" max="-2" attributes="0"/>
                   <Component id="herbsCount" min="-2" max="-2" attributes="0"/>
                   <Component id="clayCount" min="-2" max="-2" attributes="0"/>
                   <Component id="potionCount" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="mineralCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="honeyCount" alignment="0" min="-2" pref="0" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -156,16 +155,13 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="gemsButton" min="-2" pref="85" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="philosopherstoneButton" pref="0" max="32767" attributes="0"/>
-                                  <Component id="manacrystalButton" pref="0" max="32767" attributes="0"/>
-                                  <Component id="lifeelixirButton" min="-2" pref="86" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="philosopherstoneButton" pref="0" max="32767" attributes="0"/>
+                              <Component id="manacrystalButton" pref="0" max="32767" attributes="0"/>
+                              <Component id="lifeelixirButton" min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace min="29" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="mixButton" min="-2" max="-2" attributes="0"/>
