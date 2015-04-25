@@ -22,25 +22,21 @@ public class MapGUI extends javax.swing.JFrame {
     public static int width;
     public static int height;
     public static String[][] codes;
-    private String ip;
-    private int port;
-    private Client C;
-    private JSONMailer mailer;
-    
+    public static String ip;
+    public static int port;
+    public static Client C;
+    public static JSONMailer mailer;
+    private static String mapName = "";
+    private static boolean visible = false;
     public MapGUI() {
         super("Map GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ip = "192.168.2.2";
-        port = 3000;
-        C = new Client();
         mailer = new JSONMailer();
         Squares squares = new Squares();
         squares.squareheight = height;
         squares.squarewidth = width;
         getContentPane().add(squares);
-        
         initInput();
-        
         for(int i = 0; i < width; i++){
             for (int j = 0; j < height; j++) {
                 squares.addSquare(i * 50 + 30, j * 50 + 30, 50, 50);
@@ -64,6 +60,7 @@ public class MapGUI extends javax.swing.JFrame {
         squares.squarewidth = width;
         getContentPane().add(squares);
         
+        
         initInput();
         
         for(int i = 0; i < width; i++){
@@ -76,9 +73,12 @@ public class MapGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         initComponents();
+        mapJLabel.setText(C.getName());
     }
-    
-    public static void initInput(){
+    public static void sVisible(){
+        visible = !visible;
+    }
+    public static void initInput(){        
         width = 4;
         height = 6;
         codes = new String[width][height];
@@ -88,7 +88,7 @@ public class MapGUI extends javax.swing.JFrame {
             }
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,7 +140,6 @@ public class MapGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Map");
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         mapLabel.setText("Map: ");
 
@@ -151,6 +150,11 @@ public class MapGUI extends javax.swing.JFrame {
         currenttimeLabel.setText("Current Time:");
 
         moveButton.setText("Move");
+        moveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moveButtonActionPerformed(evt);
+            }
+        });
 
         xTextField.setPreferredSize(new java.awt.Dimension(7, 20));
 
@@ -210,38 +214,43 @@ public class MapGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(546, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(672, 672, 672)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mapLabel)
+                            .addComponent(fieldButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(moveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inventoryButton, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mixitemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tradeboxButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(offerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finditemButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(606, 606, 606)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(positionLabel)
                             .addComponent(timeLabel)
-                            .addComponent(currenttimeLabel))
-                        .addGap(56, 56, 56)
+                            .addComponent(currenttimeLabel)
+                            .addComponent(mapLabel))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(currenttimeJLabel)
-                            .addComponent(timeJLabel)
-                            .addComponent(positionJLabel)
-                            .addComponent(mapJLabel))
-                        .addGap(132, 132, 132))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(fieldButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(23, 23, 23)
-                                    .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(moveButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(inventoryButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(mixitemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(offerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(finditemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tradeboxButton, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))
-                        .addGap(91, 91, 91))))
+                            .addComponent(currenttimeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(timeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(positionJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +258,7 @@ public class MapGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mapLabel)
-                    .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                    .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(positionLabel)
@@ -262,13 +271,13 @@ public class MapGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(currenttimeLabel)
                     .addComponent(currenttimeJLabel))
-                .addGap(26, 26, 26)
+                .addGap(32, 32, 32)
                 .addComponent(moveButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(yTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(fieldButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(inventoryButton)
@@ -282,7 +291,7 @@ public class MapGUI extends javax.swing.JFrame {
                 .addComponent(finditemButton)
                 .addGap(44, 44, 44)
                 .addComponent(logoutButton)
-                .addGap(66, 66, 66))
+                .addContainerGap())
         );
 
         pack();
@@ -307,9 +316,11 @@ public class MapGUI extends javax.swing.JFrame {
             inventory = new InventoryGUI();
         } catch (IOException ex) {
             Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        setVisible(false);
-        inventory.setVisible(true);           
+//        setVisible(false);
+        inventory.setVisible(true);
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void mixitemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mixitemButtonActionPerformed
@@ -341,6 +352,10 @@ public class MapGUI extends javax.swing.JFrame {
         setVisible(false);
         mainmenu.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void moveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveButtonActionPerformed
+        
+    }//GEN-LAST:event_moveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,13 +391,16 @@ public class MapGUI extends javax.swing.JFrame {
         /*
          * Create and display the form
          */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                new MapGUI().setVisible(true);
+                new MapGUI();
+                mapJLabel.setText("lala");
             }
         });
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currenttimeJLabel;
@@ -393,7 +411,7 @@ public class MapGUI extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logoutButton;
-    private javax.swing.JLabel mapJLabel;
+    public static javax.swing.JLabel mapJLabel;
     private javax.swing.JLabel mapLabel;
     private javax.swing.JButton mixitemButton;
     private javax.swing.JButton moveButton;
@@ -434,15 +452,9 @@ class Squares extends JPanel {
    protected void paintComponent(Graphics g) {
       super.paintComponent(g);
       Graphics2D g2 = (Graphics2D) g;
-      g2.setColor(Color.BLUE);
+      g2.setColor(Color.GREEN);
       int i = 0 , j = 0;
       for (Rectangle rect : squares) {
-        if(itemCodes.get(i).equals("R11")){
-            g2.setColor(Color.GREEN);
-        }
-        else{
-            g2.setColor(Color.RED);
-        }
         g2.draw(rect);
         g2.fillRect(i*50+31, j*50+31,(int)rect.getWidth()-2,(int)rect.getHeight()-2);   
         i++;

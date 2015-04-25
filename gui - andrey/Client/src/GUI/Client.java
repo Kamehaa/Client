@@ -32,6 +32,70 @@ public class Client{
         private String name;
         private int mapW;
         private int mapH;
+
+    public JSONArray getInv() {
+        return inv;
+    }
+
+    public void setInv(JSONArray inv) {
+        this.inv = inv;
+    }
+
+    public int getItem1() {
+        return item1;
+    }
+
+    public void setItem1(int item1) {
+        this.item1 = item1;
+    }
+
+    public int getItem2() {
+        return item2;
+    }
+
+    public void setItem2(int item2) {
+        this.item2 = item2;
+    }
+
+    public JSONObject getJson() {
+        return json;
+    }
+
+    public void setJson(JSONObject json) {
+        this.json = json;
+    }
+
+    public int getMapH() {
+        return mapH;
+    }
+
+    public void setMapH(int mapH) {
+        this.mapH = mapH;
+    }
+
+    public int getMapW() {
+        return mapW;
+    }
+
+    public void setMapW(int mapW) {
+        this.mapW = mapW;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public JSONArray getTradebox() {
+        return tradebox;
+    }
+
+    public void setTradebox(JSONArray tradebox) {
+        this.tradebox = tradebox;
+    }
         
         
         public JSONObject getRequest() {
