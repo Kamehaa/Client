@@ -80,6 +80,7 @@ public class TableIcon extends JFrame
             }
             tokens[i] = MainMenuGUI.C.getTradeBox().get(i).mToken;
         }
+        
     }
     class ButtonRenderer extends JButton implements TableCellRenderer {
 
@@ -157,6 +158,7 @@ public class TableIcon extends JFrame
                 frame.pack();
                 frame.setVisible(true);
                 frame.setSize(1366, 768);*/
+                setVisible(false);
             }
             isPushed = false;
             return label;

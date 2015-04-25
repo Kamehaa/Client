@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andrey
@@ -16,7 +19,53 @@ public class FindItemGUI extends javax.swing.JFrame {
     public FindItemGUI() {
         initComponents();
     }
-
+    public int getIdFromIcon(String s){
+        int x = 0;
+        int pos1 = s.length()-1;
+        int pos2 = s.length()-1;
+        String temp;
+        while(s.charAt(pos1)!='/'){
+            pos1--;
+        }
+        while(s.charAt(pos2)!='.'){
+            pos2--;
+        }
+        temp = s.substring(pos1+1,pos2);
+        if(temp.equals("honey")){
+            x = 0 ;
+        }
+        else if (temp.equals("herbs")){
+            x = 1 ;
+        }
+        else if (temp.equals("clay")){
+            x = 2 ;
+        }
+        else if (temp.equals("mineral")){
+            x = 3 ;
+        }
+        else if (temp.equals("potion")){
+            x = 4 ;
+        }
+        else if (temp.equals("incense")){
+            x = 5 ;
+        }
+        else if (temp.equals("gems")){
+            x = 6 ;
+        }
+        else if (temp.equals("lifeelixir")){
+            x = 7 ;
+        }
+        else if (temp.equals("manacrystal")){
+            x = 8 ;
+        }
+        else if (temp.equals("philosopherstone")){
+            x = 9 ;
+        }
+        else {
+            x = -1;
+        }
+        return x;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,7 +204,7 @@ public class FindItemGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(findButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +294,7 @@ public class FindItemGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(slotButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(findButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(findButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(backButton)))
                 .addGap(86, 86, 86))
@@ -265,7 +314,13 @@ public class FindItemGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButtonActionPerformed
-        // TODO add your handling code here:
+        int x = getIdFromIcon(slotButton.getIcon().toString());
+        if(x >= 0){
+            MainMenuGUI.C.sendFind(x);
+        }
+        else{
+            JOptionPane.showMessageDialog(new JButton("Ok"),"Error!");
+        }
     }//GEN-LAST:event_findButtonActionPerformed
 
     private void honeyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_honeyButtonActionPerformed
@@ -297,7 +352,7 @@ public class FindItemGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_gemsButtonActionPerformed
 
     private void lifeelixirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lifeelixirButtonActionPerformed
-        slotButton.setIcon(gemsButton.getIcon());
+        slotButton.setIcon(lifeelixirButton.getIcon());
     }//GEN-LAST:event_lifeelixirButtonActionPerformed
 
     private void philosopherstoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_philosopherstoneButtonActionPerformed

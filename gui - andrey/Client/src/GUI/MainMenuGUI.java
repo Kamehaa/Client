@@ -234,7 +234,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         }
         else{
             if(C.getStatus().equals("fail")){
-                
+                System.out.println("false");
             }
             else{
                 

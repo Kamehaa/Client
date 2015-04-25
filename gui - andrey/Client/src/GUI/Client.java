@@ -175,6 +175,7 @@ public class Client{
                     serverTime = json.getLong("time");
                     deltaTime = serverTime - System.currentTimeMillis()/1000;
                     System.out.println("login success");
+                    map();
                     break;
                 case "fail":
                     description = json.getString("description");
@@ -184,7 +185,7 @@ public class Client{
                     System.out.println("error");
                     break;
             }
-            map();
+            
         }
         catch(Exception e) {
             e.printStackTrace();
