@@ -54,7 +54,7 @@ public class MapGUI extends javax.swing.JFrame {
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         xpos = MainMenuGUI.C.getX();
         ypos = MainMenuGUI.C.getY();
-        playerLabel.setBounds(getContentPane().getSize().width, ypos*100+50, 50, 50);
+        playerLabel.setBounds(xpos*100+50, ypos*100+50, 50, 50);
         playerLabel.setVisible(true);
         mapJLabel.setText(MainMenuGUI.C.getMapName());
         positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
