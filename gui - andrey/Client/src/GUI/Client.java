@@ -26,6 +26,10 @@ public class Client{
     private JSONObject request; 
     private String status;
     private String description;
+
+    public String getDescription() {
+        return description;
+    }
         
     // login attribute
     private int x;

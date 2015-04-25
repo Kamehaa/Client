@@ -58,8 +58,8 @@ public class MapGUI extends javax.swing.JFrame {
         playerLabel.setVisible(true);
         mapJLabel.setText(MainMenuGUI.C.getMapName());
         positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
-        System.out.println(getContentPane().getSize().height);
-        System.out.println(getContentPane().getSize().width);
+//        System.out.println(getContentPane().getSize().height);
+//        System.out.println(getContentPane().getSize().width);
 //        MainMenuGUI.C.tradeBox();
 //        tableIcon = new TableIcon();
 //      playerLabel.setComponentZOrder(squares, 0);
@@ -88,7 +88,9 @@ public class MapGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        alertDialog = new javax.swing.JDialog();
+        alertLabel = new javax.swing.JLabel();
+        okalertButton = new javax.swing.JButton();
         playerLabel = new javax.swing.JLabel();
         mapLabel = new javax.swing.JLabel();
         positionLabel = new javax.swing.JLabel();
@@ -109,15 +111,36 @@ public class MapGUI extends javax.swing.JFrame {
         finditemButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        alertDialog.setTitle("Alert");
+
+        okalertButton.setText("OK");
+        okalertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okalertButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout alertDialogLayout = new javax.swing.GroupLayout(alertDialog.getContentPane());
+        alertDialog.getContentPane().setLayout(alertDialogLayout);
+        alertDialogLayout.setHorizontalGroup(
+            alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(alertLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(alertDialogLayout.createSequentialGroup()
+                        .addComponent(okalertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 163, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        alertDialogLayout.setVerticalGroup(
+            alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(alertLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okalertButton)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -204,29 +227,12 @@ public class MapGUI extends javax.swing.JFrame {
                 .addComponent(playerLabel)
                 .addGap(369, 369, 369)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(fieldButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(moveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(inventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mixitemButton, javax.swing.GroupLayout.DEFAULT_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tradeboxButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(offerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(finditemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mapLabel)
                         .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(currenttimeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                            .addComponent(currenttimeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                             .addComponent(mapJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(currenttimeLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(positionLabel, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -234,7 +240,25 @@ public class MapGUI extends javax.swing.JFrame {
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(positionJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(timeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(timeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(fieldButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(moveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(inventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(mixitemButton, javax.swing.GroupLayout.DEFAULT_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tradeboxButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(offerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(finditemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(currenttimeLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -258,7 +282,7 @@ public class MapGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 88, Short.MAX_VALUE)
                         .addComponent(currenttimeLabel))
                     .addComponent(currenttimeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
@@ -288,45 +312,116 @@ public class MapGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fieldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldButtonActionPerformed
-        jDialog1.setVisible(true);
         MainMenuGUI.C.field();
-        jDialog1.setVisible(false);
+        alertDialog.setSize(170,100);
+        alertDialog.setVisible(true);
+        switch (MainMenuGUI.C.getStatus()) {
+            case "ok":
+                alertLabel.setText("Field success");
+                break;
+            case "fail":
+                alertLabel.setText("Field fail");
+                break;
+            case "error":
+                alertLabel.setText("Error!");
+                break;
+        }
     }//GEN-LAST:event_fieldButtonActionPerformed
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
         InventoryGUI inventory = null;
-        try {
-            MainMenuGUI.C.inventory();
-            inventory = new InventoryGUI();
-        } catch (IOException ex) {
-            Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
-            Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+        alertDialog.setSize(170,100);
+        switch (MainMenuGUI.C.getStatus()) {
+            case "error":
+                alertDialog.setVisible(true);
+                alertLabel.setText("Error!");
+                break;
+            case "ok":
+                try {
+                    MainMenuGUI.C.inventory();
+                    inventory = new InventoryGUI();
+                } catch (    IOException | JSONException ex) {
+                    Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
         }
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void mixitemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mixitemButtonActionPerformed
-        MixGUI mix = new MixGUI();
-        setVisible(false);
-        mix.setVisible(true);
+        alertDialog.setSize(170,100);
+        switch (MainMenuGUI.C.getStatus()) {
+            case "error":
+                alertLabel.setText("Error!");
+                alertDialog.setVisible(true);
+                break;
+            case "ok":
+                MixGUI mix = new MixGUI();
+                setVisible(false);
+                mix.setVisible(true);
+                break;
+            default:
+                alertLabel.setText(MainMenuGUI.C.getDescription());
+                alertDialog.setVisible(true);
+                break;
+        }
     }//GEN-LAST:event_mixitemButtonActionPerformed
 
     private void tradeboxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeboxButtonActionPerformed
         MainMenuGUI.C.tradeBox();
-        tableIcon = new TableIcon(0);
-        tableIcon.setSize(800, 600);
-        tableIcon.setVisible(true);
+        alertDialog.setSize(170,100);
+        switch (MainMenuGUI.C.getStatus()) {
+            case "error":
+                alertLabel.setText("Error!");
+                alertDialog.setVisible(true);
+                break;
+            case "fail":
+                alertLabel.setText(MainMenuGUI.C.getDescription());
+                alertDialog.setVisible(true);
+                break;
+            default:
+                tableIcon = new TableIcon(0);
+                tableIcon.setSize(800, 600);
+                tableIcon.setVisible(true);
+                break;
+        }
     }//GEN-LAST:event_tradeboxButtonActionPerformed
 
     private void offerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offerButtonActionPerformed
-        OfferGUI offer = new OfferGUI();
-        setVisible(false);
-        offer.setVisible(true);
+        alertDialog.setSize(170,100);
+        switch (MainMenuGUI.C.getStatus()) {
+            case "error":
+                alertLabel.setText("Error!");
+                alertDialog.setVisible(true);
+                break;
+            case "ok":
+                OfferGUI offer;
+                try {
+                    offer = new OfferGUI();
+                    setVisible(false);
+                    offer.setVisible(true);
+                } catch (JSONException ex) {
+                    Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            default:
+                alertLabel.setText(MainMenuGUI.C.getDescription());
+                alertDialog.setVisible(true);
+                break;
+        }
     }//GEN-LAST:event_offerButtonActionPerformed
 
     private void finditemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finditemButtonActionPerformed
-        FindItemGUI fItem = new FindItemGUI();
-        fItem.setVisible(true);
+        alertDialog.setSize(170,100);
+        switch (MainMenuGUI.C.getStatus()) {
+            case "error":
+                alertLabel.setText("Error!");
+                alertDialog.setVisible(true);
+                break;
+            case "ok":
+                FindItemGUI fItem = new FindItemGUI();
+                fItem.setVisible(true);
+                break;
+        }
     }//GEN-LAST:event_finditemButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -344,27 +439,40 @@ public class MapGUI extends javax.swing.JFrame {
             ypos = Integer.valueOf(yTextField.getText());
             MainMenuGUI.C.move(xpos,ypos);
             long temp = MainMenuGUI.C.getServerTime() - System.currentTimeMillis()/1000;
-            if(MainMenuGUI.C.getStatus().equals("ok")){
-                if(temp > MainMenuGUI.C.getDeltaTime()){
-                    System.out.println("Masuk");
-                    ActionListener listener = new ActionListener(){
-                        public void actionPerformed(ActionEvent event){
-                             positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
-                             playerLabel.setBounds(xpos*100+50, ypos*100+50, 50, 50);
-                        }
-                    };
-                    Timer timer = new Timer((int) (temp-MainMenuGUI.C.getDeltaTime()) * 1000, listener);
-                    timer.setRepeats(false);
-                    timer.start();
-                } else {
-                    positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
-                }
-            }
-            else{
-                
+            switch (MainMenuGUI.C.getStatus()) {
+                case "ok":
+                    if(temp > MainMenuGUI.C.getDeltaTime()){
+                        ActionListener listener = new ActionListener(){
+                    @Override
+                            public void actionPerformed(ActionEvent event){
+                                 positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
+                                 playerLabel.setBounds(xpos*100+50, ypos*100+50, 50, 50);
+                            }
+                        };
+                        Timer timer = new Timer((int) (temp-MainMenuGUI.C.getDeltaTime()) * 1000, listener);
+                        timer.setRepeats(false);
+                        timer.start();
+                    } else {
+                        positionJLabel.setText("("+String.valueOf(xpos)+","+String.valueOf(ypos)+")");
+                    }
+                    break;
+                case "error":
+                    alertDialog.setSize(170,100);
+                    alertDialog.setVisible(true);
+                    alertLabel.setText("Error!");
+                    break;
+                case "fail":
+                    alertDialog.setSize(170,100);
+                    alertDialog.setVisible(true);
+                    alertLabel.setText(MainMenuGUI.C.getDescription());
+                    break;
             }
         }
     }//GEN-LAST:event_moveButtonActionPerformed
+
+    private void okalertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okalertButtonActionPerformed
+        alertDialog.setVisible(false);
+    }//GEN-LAST:event_okalertButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,18 +519,20 @@ public class MapGUI extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog alertDialog;
+    private javax.swing.JLabel alertLabel;
     private javax.swing.JLabel currenttimeJLabel;
     private javax.swing.JLabel currenttimeLabel;
     private javax.swing.JButton fieldButton;
     private javax.swing.JButton finditemButton;
     private javax.swing.JButton inventoryButton;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel mapJLabel;
     private javax.swing.JLabel mapLabel;
     private javax.swing.JButton mixitemButton;
     private javax.swing.JButton moveButton;
     private javax.swing.JButton offerButton;
+    private javax.swing.JButton okalertButton;
     private javax.swing.JLabel playerLabel;
     private javax.swing.JLabel positionJLabel;
     private javax.swing.JLabel positionLabel;

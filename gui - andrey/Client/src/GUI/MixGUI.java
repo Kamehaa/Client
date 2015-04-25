@@ -19,13 +19,14 @@ public class MixGUI extends javax.swing.JFrame {
      */
     JSONMailer mailer;
     
-    public MixGUI() {
-        mailer = new JSONMailer();
+    public MixGUI() throws JSONException {
+        setVisible(true);
         initComponents();
-        
+        initLabelCount();
+        alertDialog.setBounds(600,400, 170, 100);
     }
     public int getIdFromIcon(String s){
-        int x = 0;
+        int x;
         int pos1 = s.length()-1;
         int pos2 = s.length()-1;
         String temp;
@@ -36,38 +37,40 @@ public class MixGUI extends javax.swing.JFrame {
             pos2--;
         }
         temp = s.substring(pos1+1,pos2);
-        if(temp.equals("honey")){
-            x = 0 ;
-        }
-        else if (temp.equals("herbs")){
-            x = 1 ;
-        }
-        else if (temp.equals("clay")){
-            x = 2 ;
-        }
-        else if (temp.equals("mineral")){
-            x = 3 ;
-        }
-        else if (temp.equals("potion")){
-            x = 4 ;
-        }
-        else if (temp.equals("incense")){
-            x = 5 ;
-        }
-        else if (temp.equals("gems")){
-            x = 6 ;
-        }
-        else if (temp.equals("lifeelixir")){
-            x = 7 ;
-        }
-        else if (temp.equals("manacrystal")){
-            x = 8 ;
-        }
-        else if (temp.equals("philosopherstone")){
-            x = 9 ;
-        }
-        else {
-            x = -1;
+        switch (temp) {
+            case "honey":
+                x = 0 ;
+                break;
+            case "herbs":
+                x = 1 ;
+                break;
+            case "clay":
+                x = 2 ;
+                break;
+            case "mineral":
+                x = 3 ;
+                break;
+            case "potion":
+                x = 4 ;
+                break;
+            case "incense":
+                x = 5 ;
+                break;
+            case "gems":
+                x = 6 ;
+                break;
+            case "lifeelixir":
+                x = 7 ;
+                break;
+            case "manacrystal":
+                x = 8 ;
+                break;
+            case "philosopherstone":
+                x = 9 ;
+                break;
+            default:
+                x = -1;
+                break;
         }
         return x;
     }
@@ -80,6 +83,9 @@ public class MixGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        alertDialog = new javax.swing.JDialog();
+        alertLabel = new javax.swing.JLabel();
+        okalertButton = new javax.swing.JButton();
         mixButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         honeyCount = new javax.swing.JLabel();
@@ -104,6 +110,38 @@ public class MixGUI extends javax.swing.JFrame {
         lifeelixirButton = new javax.swing.JButton();
         manacrystalButton = new javax.swing.JButton();
         philosopherstoneButton = new javax.swing.JButton();
+
+        alertDialog.setTitle("Alert");
+
+        okalertButton.setText("OK");
+        okalertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okalertButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout alertDialogLayout = new javax.swing.GroupLayout(alertDialog.getContentPane());
+        alertDialog.getContentPane().setLayout(alertDialogLayout);
+        alertDialogLayout.setHorizontalGroup(
+            alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(alertLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(alertDialogLayout.createSequentialGroup()
+                        .addComponent(okalertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 163, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        alertDialogLayout.setVerticalGroup(
+            alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(alertLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okalertButton)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mix Item");
@@ -317,7 +355,7 @@ public class MixGUI extends javax.swing.JFrame {
                                 .addComponent(philosopherstoneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addComponent(manacrystalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addComponent(lifeelixirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mixButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,7 +373,25 @@ public class MixGUI extends javax.swing.JFrame {
         if(slot1.getIcon()!= null & slot2.getIcon() != null){
             int id1 = getIdFromIcon(slot1.getIcon().toString());
             int id2 = getIdFromIcon(slot2.getIcon().toString());
-            MainMenuGUI.C.mixItem(id1,id2);                
+            MainMenuGUI.C.mixItem(id1,id2);
+            alertDialog.setSize(170,100);
+            alertDialog.setVisible(true);
+            switch (MainMenuGUI.C.getStatus()) {
+                case "ok":
+                    alertLabel.setText("Mix Success");
+                    try {
+                        initLabelCount();
+                    } catch (JSONException ex) {
+                        Logger.getLogger(MixGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                case "fail":
+                    alertLabel.setText(MainMenuGUI.C.getDescription());
+                    break;
+                case "error":
+                    alertLabel.setText("Mix Error");
+                    break;
+            }
         }
     }//GEN-LAST:event_mixButtonActionPerformed
 
@@ -447,6 +503,22 @@ public class MixGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_slot2ActionPerformed
 
+    private void okalertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okalertButtonActionPerformed
+        alertDialog.setVisible(false);
+    }//GEN-LAST:event_okalertButtonActionPerformed
+    
+    private void initLabelCount() throws JSONException{
+        honeyCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(0)));
+        herbsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(1)));
+        clayCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(2)));
+        mineralCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(3)));
+        potionCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(4)));
+        incenseCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(5)));
+        gemsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(6)));
+        lifeelixirCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(7)));
+        manacrystalCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(8)));
+        philosopherstoneCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(9)));
+    }
     /**
      * @param args the command line arguments
      */
@@ -484,11 +556,17 @@ public class MixGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new MixGUI().setVisible(true);
+                try {
+                    new MixGUI();
+                } catch (JSONException ex) {
+                    Logger.getLogger(MixGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog alertDialog;
+    private javax.swing.JLabel alertLabel;
     private javax.swing.JButton backButton;
     private javax.swing.JButton clayButton;
     private javax.swing.JLabel clayCount;
@@ -507,6 +585,7 @@ public class MixGUI extends javax.swing.JFrame {
     private javax.swing.JButton mineralButton;
     private javax.swing.JLabel mineralCount;
     private javax.swing.JButton mixButton;
+    private javax.swing.JButton okalertButton;
     private javax.swing.JButton philosopherstoneButton;
     private javax.swing.JLabel philosopherstoneCount;
     private javax.swing.JButton potionButton;

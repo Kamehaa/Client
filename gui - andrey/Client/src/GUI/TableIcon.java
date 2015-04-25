@@ -4,9 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.table.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 public class TableIcon extends JFrame
 {
@@ -55,10 +56,6 @@ public class TableIcon extends JFrame
             }
         };
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
-//        table.getColumn("Offered Item").setPreferredWidth(35);
-//        table.getColumn("Demanded Item").setPreferredWidth(35);
-//        table.getColumn("Number Offered").setPreferredWidth(60);
-//        table.getColumn("Number Demanded").setPreferredWidth(70);
         table.getColumn("Offered Item").sizeWidthToFit();
         table.getColumn("Demanded Item").sizeWidthToFit();
         table.getColumn("Number Offered").sizeWidthToFit();

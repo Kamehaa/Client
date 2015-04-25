@@ -4,8 +4,9 @@
  */
 package GUI;
 
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
 
 /**
  *
@@ -16,11 +17,13 @@ public class FindItemGUI extends javax.swing.JFrame {
     /**
      * Creates new form FindItemGUI
      */
-    public FindItemGUI() {
+    public FindItemGUI() throws JSONException {
+        setVisible(true);
         initComponents();
+        initLabelCount();
     }
     public int getIdFromIcon(String s){
-        int x = 0;
+        int x;
         int pos1 = s.length()-1;
         int pos2 = s.length()-1;
         String temp;
@@ -31,38 +34,40 @@ public class FindItemGUI extends javax.swing.JFrame {
             pos2--;
         }
         temp = s.substring(pos1+1,pos2);
-        if(temp.equals("honey")){
-            x = 0 ;
-        }
-        else if (temp.equals("herbs")){
-            x = 1 ;
-        }
-        else if (temp.equals("clay")){
-            x = 2 ;
-        }
-        else if (temp.equals("mineral")){
-            x = 3 ;
-        }
-        else if (temp.equals("potion")){
-            x = 4 ;
-        }
-        else if (temp.equals("incense")){
-            x = 5 ;
-        }
-        else if (temp.equals("gems")){
-            x = 6 ;
-        }
-        else if (temp.equals("lifeelixir")){
-            x = 7 ;
-        }
-        else if (temp.equals("manacrystal")){
-            x = 8 ;
-        }
-        else if (temp.equals("philosopherstone")){
-            x = 9 ;
-        }
-        else {
-            x = -1;
+        switch (temp) {
+            case "honey":
+                x = 0 ;
+                break;
+            case "herbs":
+                x = 1 ;
+                break;
+            case "clay":
+                x = 2 ;
+                break;
+            case "mineral":
+                x = 3 ;
+                break;
+            case "potion":
+                x = 4 ;
+                break;
+            case "incense":
+                x = 5 ;
+                break;
+            case "gems":
+                x = 6 ;
+                break;
+            case "lifeelixir":
+                x = 7 ;
+                break;
+            case "manacrystal":
+                x = 8 ;
+                break;
+            case "philosopherstone":
+                x = 9 ;
+                break;
+            default:
+                x = -1;
+                break;
         }
         return x;
     }
@@ -75,6 +80,9 @@ public class FindItemGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        alertDialog = new javax.swing.JDialog();
+        alertLabel = new javax.swing.JLabel();
+        okalertButton = new javax.swing.JButton();
         slotButton = new javax.swing.JButton();
         honeyCount = new javax.swing.JLabel();
         philosopherstoneButton = new javax.swing.JButton();
@@ -98,6 +106,38 @@ public class FindItemGUI extends javax.swing.JFrame {
         gemsCount = new javax.swing.JLabel();
         lifeelixirCount = new javax.swing.JLabel();
         mineralCount = new javax.swing.JLabel();
+
+        alertDialog.setTitle("Alert");
+
+        okalertButton.setText("OK");
+        okalertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okalertButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout alertDialogLayout = new javax.swing.GroupLayout(alertDialog.getContentPane());
+        alertDialog.getContentPane().setLayout(alertDialogLayout);
+        alertDialogLayout.setHorizontalGroup(
+            alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(alertLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(alertDialogLayout.createSequentialGroup()
+                        .addComponent(okalertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 163, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        alertDialogLayout.setVerticalGroup(
+            alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(alertLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okalertButton)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,7 +244,7 @@ public class FindItemGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(findButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,15 +355,23 @@ public class FindItemGUI extends javax.swing.JFrame {
 
     private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButtonActionPerformed
         int x = getIdFromIcon(slotButton.getIcon().toString());
-        if(x >= 0){
-            MainMenuGUI.C.sendFind(x);
-            tableIcon = new TableIcon(1);
-            setVisible(false);
-            tableIcon.setSize(800, 600);
-            tableIcon.setVisible(true);
-        }
-        else{
-            JOptionPane.showMessageDialog(new JButton("Ok"),"Error!");
+        alertDialog.setSize(170,100);
+        switch (MainMenuGUI.C.getStatus()) {
+            case "ok":
+                MainMenuGUI.C.sendFind(x);
+                tableIcon = new TableIcon(1);
+                setVisible(false);
+                tableIcon.setSize(800, 600);
+                tableIcon.setVisible(true);
+                break;
+            case "fail":
+                alertDialog.setVisible(true);
+                alertLabel.setText(MainMenuGUI.C.getDescription());
+                break;
+            case "error":
+                alertDialog.setVisible(true);
+                alertLabel.setText("Error!");
+                break;
         }
     }//GEN-LAST:event_findButtonActionPerformed
 
@@ -367,6 +415,23 @@ public class FindItemGUI extends javax.swing.JFrame {
         slotButton.setIcon(null);
     }//GEN-LAST:event_slotButtonActionPerformed
 
+    private void okalertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okalertButtonActionPerformed
+        alertDialog.setVisible(false);
+    }//GEN-LAST:event_okalertButtonActionPerformed
+    
+    private void initLabelCount() throws JSONException{
+        honeyCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(0)));
+        herbsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(1)));
+        clayCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(2)));
+        mineralCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(3)));
+        potionCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(4)));
+        incenseCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(5)));
+        gemsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(6)));
+        lifeelixirCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(7)));
+        manacrystalCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(8)));
+        philosopherstoneCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(9)));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -404,11 +469,17 @@ public class FindItemGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new FindItemGUI().setVisible(true);
+                try {
+                    new FindItemGUI();
+                } catch (JSONException ex) {
+                    Logger.getLogger(FindItemGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog alertDialog;
+    private javax.swing.JLabel alertLabel;
     private javax.swing.JButton backButton;
     private javax.swing.JButton clayButton;
     private javax.swing.JLabel clayCount;
@@ -427,6 +498,7 @@ public class FindItemGUI extends javax.swing.JFrame {
     private javax.swing.JLabel manacrystalCount;
     private javax.swing.JButton mineralButton;
     private javax.swing.JLabel mineralCount;
+    private javax.swing.JButton okalertButton;
     private javax.swing.JButton philosopherstoneButton;
     private javax.swing.JLabel philosopherstoneCount;
     private javax.swing.JButton potionButton;

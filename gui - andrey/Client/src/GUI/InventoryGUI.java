@@ -21,16 +21,7 @@ public class InventoryGUI extends javax.swing.JFrame {
     public InventoryGUI() throws IOException, JSONException {
         setVisible(true);
         initComponents();
-        honeyCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(0)));
-        herbsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(1)));
-        clayCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(2)));
-        mineralCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(3)));
-        potionCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(4)));
-        incenseCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(5)));
-        gemsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(6)));
-        lifeelixirCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(7)));
-        manacrystalCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(8)));
-        philosopherstoneCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(9)));
+        initLabelCount();        
     }
 
     /**
@@ -234,7 +225,20 @@ public class InventoryGUI extends javax.swing.JFrame {
         dispose();
 //        map.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+    
 
+    private void initLabelCount() throws JSONException{
+        honeyCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(0)));
+        herbsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(1)));
+        clayCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(2)));
+        mineralCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(3)));
+        potionCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(4)));
+        incenseCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(5)));
+        gemsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(6)));
+        lifeelixirCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(7)));
+        manacrystalCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(8)));
+        philosopherstoneCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(9)));
+    }
     /**
      * @param args the command line arguments
      */

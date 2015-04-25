@@ -4,6 +4,10 @@
  */
 package GUI;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
+
 /**
  *
  * @author Andrey
@@ -13,11 +17,15 @@ public class OfferGUI extends javax.swing.JFrame {
     /**
      * Creates new form OfferGUI
      */
-    public OfferGUI() {
+    public OfferGUI() throws JSONException {
+        MainMenuGUI.C.inventory();
+        setVisible(true);
         initComponents();
+        initLabelCount();
+        alertDialog.setBounds(600,400, 170, 100);
     }
     public int getIdFromIcon(String s){
-        int x = 0;
+        int x;
         int pos1 = s.length()-1;
         int pos2 = s.length()-1;
         String temp;
@@ -28,38 +36,40 @@ public class OfferGUI extends javax.swing.JFrame {
             pos2--;
         }
         temp = s.substring(pos1+1,pos2);
-        if(temp.equals("honey")){
-            x = 0 ;
-        }
-        else if (temp.equals("herbs")){
-            x = 1 ;
-        }
-        else if (temp.equals("clay")){
-            x = 2 ;
-        }
-        else if (temp.equals("mineral")){
-            x = 3 ;
-        }
-        else if (temp.equals("potion")){
-            x = 4 ;
-        }
-        else if (temp.equals("incense")){
-            x = 5 ;
-        }
-        else if (temp.equals("gems")){
-            x = 6 ;
-        }
-        else if (temp.equals("lifeelixir")){
-            x = 7 ;
-        }
-        else if (temp.equals("manacrystal")){
-            x = 8 ;
-        }
-        else if (temp.equals("philosopherstone")){
-            x = 9 ;
-        }
-        else {
-            x = -1;
+        switch (temp) {
+            case "honey":
+                x = 0 ;
+                break;
+            case "herbs":
+                x = 1 ;
+                break;
+            case "clay":
+                x = 2 ;
+                break;
+            case "mineral":
+                x = 3 ;
+                break;
+            case "potion":
+                x = 4 ;
+                break;
+            case "incense":
+                x = 5 ;
+                break;
+            case "gems":
+                x = 6 ;
+                break;
+            case "lifeelixir":
+                x = 7 ;
+                break;
+            case "manacrystal":
+                x = 8 ;
+                break;
+            case "philosopherstone":
+                x = 9 ;
+                break;
+            default:
+                x = -1;
+                break;
         }
         return x;
     }
@@ -72,6 +82,9 @@ public class OfferGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        alertDialog = new javax.swing.JDialog();
+        alertLabel = new javax.swing.JLabel();
+        okalertButton = new javax.swing.JButton();
         offeredLabel = new javax.swing.JLabel();
         demandedLabel = new javax.swing.JLabel();
         offeredSpinner = new javax.swing.JSpinner();
@@ -100,6 +113,38 @@ public class OfferGUI extends javax.swing.JFrame {
         lifeelixirCount = new javax.swing.JLabel();
         manacrystalCount = new javax.swing.JLabel();
         philosopherstoneCount = new javax.swing.JLabel();
+
+        alertDialog.setTitle("Alert");
+
+        okalertButton.setText("OK");
+        okalertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okalertButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout alertDialogLayout = new javax.swing.GroupLayout(alertDialog.getContentPane());
+        alertDialog.getContentPane().setLayout(alertDialogLayout);
+        alertDialogLayout.setHorizontalGroup(
+            alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(alertLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(alertDialogLayout.createSequentialGroup()
+                        .addComponent(okalertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 163, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        alertDialogLayout.setVerticalGroup(
+            alertDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(alertLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okalertButton)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -338,22 +383,26 @@ public class OfferGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        // TODO add your handling code here:
         int offeredID = getIdFromIcon(slot1.getIcon().toString());
         int demandedID = getIdFromIcon(slot2.getIcon().toString());
-            
+        alertDialog.setSize(170,100);
+        
         if(offeredID >= 0 && demandedID >= 0){
             int nDemanded = (int) demandedSpinner.getValue();
             int nOffered = (int) offeredSpinner.getValue();
             if(nDemanded > 0 && nOffered > 0){
                 MainMenuGUI.C.offer(offeredID, nOffered, demandedID, nDemanded);
+                alertDialog.setVisible(true);
+                alertLabel.setText("Offer success");
             }
             else{
-                System.out.println("lalala");
+                alertDialog.setVisible(true);
+                alertLabel.setText("Offer failed");
             }
         }
         else{
-            System.out.println("lulu");
+            alertDialog.setVisible(true);
+            alertLabel.setText("Offer failed");
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -465,6 +514,22 @@ public class OfferGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_philosopherstoneButtonActionPerformed
 
+    private void okalertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okalertButtonActionPerformed
+        alertDialog.setVisible(false);
+    }//GEN-LAST:event_okalertButtonActionPerformed
+    
+    private void initLabelCount() throws JSONException{
+        honeyCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(0)));
+        herbsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(1)));
+        clayCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(2)));
+        mineralCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(3)));
+        potionCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(4)));
+        incenseCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(5)));
+        gemsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(6)));
+        lifeelixirCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(7)));
+        manacrystalCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(8)));
+        philosopherstoneCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(9)));
+    }
     /**
      * @param args the command line arguments
      */
@@ -502,11 +567,17 @@ public class OfferGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new OfferGUI().setVisible(true);
+                try {
+                    new OfferGUI();
+                } catch (JSONException ex) {
+                    Logger.getLogger(OfferGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog alertDialog;
+    private javax.swing.JLabel alertLabel;
     private javax.swing.JButton backButton;
     private javax.swing.JButton clayButton;
     private javax.swing.JLabel clayCount;
@@ -529,6 +600,7 @@ public class OfferGUI extends javax.swing.JFrame {
     private javax.swing.JLabel offeredLabel;
     private javax.swing.JSpinner offeredSpinner;
     private javax.swing.JButton okButton;
+    private javax.swing.JButton okalertButton;
     private javax.swing.JButton philosopherstoneButton;
     private javax.swing.JLabel philosopherstoneCount;
     private javax.swing.JButton potionButton;
