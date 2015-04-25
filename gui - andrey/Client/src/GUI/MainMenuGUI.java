@@ -2,11 +2,9 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.TextField;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -29,7 +27,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private int port;
     private JPanel serverPort;
     private boolean changeServer;
-    private JFrame frame;
     /**
      * Creates new form MainMenuGUI
      */
@@ -44,14 +41,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         serverPort.setVisible(changeServer);
         C =  new Client();
         initComponents();
-        frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        frame.add(new TopPanel(), BorderLayout.NORTH);
-        frame.add(new MiddlePanel(), BorderLayout.CENTER);
-        frame.add(new UpdatePanel(), BorderLayout.SOUTH);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -64,6 +53,12 @@ public class MainMenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        serverDialog = new javax.swing.JDialog();
+        ipLabel = new javax.swing.JLabel();
+        portLabel = new javax.swing.JLabel();
+        ipTextField = new javax.swing.JTextField();
+        portTextField = new javax.swing.JTextField();
+        okButton = new javax.swing.JButton();
         usernameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         usernameTextField = new javax.swing.JTextField();
@@ -72,9 +67,67 @@ public class MainMenuGUI extends javax.swing.JFrame {
         signUpButton = new javax.swing.JButton();
         server = new javax.swing.JButton();
 
+        serverDialog.setTitle("Server");
+        serverDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        serverDialog.setMinimumSize(new java.awt.Dimension(200, 175));
+        serverDialog.setPreferredSize(new java.awt.Dimension(200, 175));
+
+        ipLabel.setText("IP:");
+
+        portLabel.setText("Port:");
+
+        ipTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ipTextFieldActionPerformed(evt);
+            }
+        });
+
+        okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout serverDialogLayout = new javax.swing.GroupLayout(serverDialog.getContentPane());
+        serverDialog.getContentPane().setLayout(serverDialogLayout);
+        serverDialogLayout.setHorizontalGroup(
+            serverDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(serverDialogLayout.createSequentialGroup()
+                .addGroup(serverDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(serverDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(serverDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(portLabel)
+                            .addComponent(ipLabel))
+                        .addGap(30, 30, 30)
+                        .addGroup(serverDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(portTextField)
+                            .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(serverDialogLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(okButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        serverDialogLayout.setVerticalGroup(
+            serverDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(serverDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(serverDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ipLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(serverDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(portLabel)
+                    .addComponent(portTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(okButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(400, 400));
 
         usernameLabel.setText("Username");
 
@@ -112,36 +165,42 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 serverMouseClicked(evt);
             }
         });
+        server.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
+                .addComponent(server)
+                .addGap(0, 735, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(usernameLabel)
                             .addComponent(passwordLabel))
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordTextField)
-                            .addComponent(usernameTextField)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(passwordTextField)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
-                        .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(111, 111, 111))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(server)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(107, 107, 107)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(signUpButton, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(server)
-                .addGap(95, 95, 95)
+                .addGap(93, 93, 93)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameLabel)
                     .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,11 +208,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
                     .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loginButton)
-                    .addComponent(signUpButton))
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(loginButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(signUpButton)
+                .addContainerGap(356, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,11 +231,34 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 mailer.send(ip,port,C.getRequest().toString(),3000);
                 C.respond(mailer.getResponse());
                 C.pLogIn();
+                System.out.println(C.getToken());
+                C.inventory();
+                mailer.send(ip,port,C.getRequest().toString(),3000);
+                C.respond(mailer.getResponse());
+                C.pInventory();
+                C.map();
+                mailer.send(ip,port,C.getRequest().toString(),3000);
+                C.respond(mailer.getResponse());
+                C.pMap();
+                System.out.println(C.getToken());
             } catch (JSONException ex) {
                 Logger.getLogger(MainMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         System.out.println("user : " + username +" pass: "+password);
+        
+        if(!C.getToken().isEmpty())
+        {       
+            MapGUI map = new MapGUI(ip, port, C);
+            setVisible(false);
+        }
+        else if(C.getToken() == null){
+            
+        }
+        else
+        {
+            
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
@@ -201,9 +283,29 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void serverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serverMouseClicked
         changeServer = !changeServer;
-        //serverPort.add(new TextField());
         serverPort.setVisible(changeServer);
     }//GEN-LAST:event_serverMouseClicked
+
+    private void serverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serverActionPerformed
+        ipTextField.setText(ip);
+        portTextField.setText(String.valueOf(port));
+        serverDialog.setVisible(true);
+    }//GEN-LAST:event_serverActionPerformed
+
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        if(ipTextField.getText().isEmpty() || portTextField.getText().isEmpty()){
+            //do nothing
+        }
+        else{
+            serverDialog.setVisible(false);
+            ip = ipTextField.getText().toString();
+            port = Integer.parseInt(portTextField.getText().toString());
+        }
+    }//GEN-LAST:event_okButtonActionPerformed
+
+    private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ipTextFieldActionPerformed
     public class TopPanel extends JPanel {
 
         public TopPanel() {
@@ -274,10 +376,16 @@ public class MainMenuGUI extends javax.swing.JFrame {
         new MainMenuGUI();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ipLabel;
+    private javax.swing.JTextField ipTextField;
     private javax.swing.JButton loginButton;
+    private javax.swing.JButton okButton;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordTextField;
+    private javax.swing.JLabel portLabel;
+    private javax.swing.JTextField portTextField;
     private javax.swing.JButton server;
+    private javax.swing.JDialog serverDialog;
     private javax.swing.JButton signUpButton;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
