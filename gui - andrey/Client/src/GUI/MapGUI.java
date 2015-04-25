@@ -294,8 +294,6 @@ public class MapGUI extends javax.swing.JFrame {
         } catch (JSONException ex) {
             Logger.getLogger(MapGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        setVisible(false);
-        inventory.setVisible(true);
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void mixitemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mixitemButtonActionPerformed
@@ -315,7 +313,7 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_offerButtonActionPerformed
 
     private void finditemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finditemButtonActionPerformed
-
+        
     }//GEN-LAST:event_finditemButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed

@@ -218,8 +218,8 @@ public class Client{
             status = json.getString("status"); 
             switch (status) {
                 case "ok":
-                    inv.put(item1, inv.getInt(item1) - 3);
-                    inv.put(item2, inv.getInt(item2) - 3);
+                    inv.put(item1, (inv.getInt(item1) - 3));
+                    inv.put(item2, (inv.getInt(item2) - 3));
                     inv.put(json.getInt("item"), (inv.getInt(json.getInt("item")) + 1));
                     break;
                 case "fail":

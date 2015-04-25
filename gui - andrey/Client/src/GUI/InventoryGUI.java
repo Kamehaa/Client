@@ -19,6 +19,7 @@ public class InventoryGUI extends javax.swing.JFrame {
      * Creates new form InventoryGUI
      */
     public InventoryGUI() throws IOException, JSONException {
+        setVisible(true);
         initComponents();
         honeyCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(0)));
         herbsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(1)));

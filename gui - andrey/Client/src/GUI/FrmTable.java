@@ -20,6 +20,10 @@ public class FrmTable extends JFrame{
     private DefaultTableModel tableModel;
     private JTextField txtField1;
     private JTextField txtField2;
+    private JTextField txtField3;
+    private JTextField txtField4;
+    private JButton actButton;
+
 
     private FrmTable() {
         createGUI();
@@ -36,8 +40,13 @@ public class FrmTable extends JFrame{
         JPanel northPanel = new JPanel();
         txtField1 = new JTextField();
         txtField2 = new JTextField();
-        JLabel lblField1 = new JLabel("Column1   ");
-        JLabel lblField2 = new JLabel("Column2   ");
+        txtField3 = new JTextField();
+        txtField4 = new JTextField();
+        JLabel lblField1 = new JLabel("OfferedItem");
+        JLabel lblField2 = new JLabel("NumberOffered");
+        JLabel lblField3 = new JLabel("DemandedItem");
+        JLabel lblField4 = new JLabel("NumberDemanded");
+        JLabel lblField5 = new JLabel("Act");
         northPanel.add(lblField1);
         northPanel.add(txtField1);
         northPanel.add(lblField2);
@@ -48,13 +57,13 @@ public class FrmTable extends JFrame{
         add(northPanel, BorderLayout.NORTH);
         add(eastPanel, BorderLayout.EAST);
         add(pane,BorderLayout.CENTER);
-        tableModel = new DefaultTableModel(new Object[]{"column1","column2"},0);
+        tableModel = new DefaultTableModel(new Object[]{"OfferedItem","NumberOffered","DemandedItem","NumberDemanded","Act"},0);
         table.setModel(tableModel);
         btnAdd.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 int count = tableModel.getRowCount()+1;
-                tableModel.addRow(new Object[]{txtField1.getText(),txtField1.getText()});
+                tableModel.addRow(new Object[]{txtField1.getText(),txtField1.getText(),txtField1.getText(),txtField1.getText(),new JButton("Act")});
             }
         });
     }
