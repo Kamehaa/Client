@@ -382,11 +382,11 @@ public class MixGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_clayButtonActionPerformed
 
     private void mineralButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mineralButtonActionPerformed
-        if(slot1.getIcon() == null || slot1.getIcon() == herbsButton.getIcon()){
-            slot1.setIcon(herbsButton.getIcon());
+        if(slot1.getIcon() == null || slot1.getIcon() == mineralButton.getIcon()){
+            slot1.setIcon(mineralButton.getIcon());
         }
         else{
-            slot2.setIcon(herbsButton.getIcon());
+            slot2.setIcon(mineralButton.getIcon());
         }
     }//GEN-LAST:event_mineralButtonActionPerformed
 
