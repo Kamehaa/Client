@@ -4,13 +4,19 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.table.*;
 
 public class TableIcon extends JFrame
 {
+    public String[] tokens;
+    public Object[][] data;
+    public ImageIcon[] icons;
+    public static TableIcon frame;
+    
     public TableIcon()
     {
-        ImageIcon[] icons = new ImageIcon[10]; 
+        icons = new ImageIcon[10]; 
         icons[0] = new ImageIcon(getClass().getClassLoader().getResource("img/honey.png"));
         icons[1] = new ImageIcon(getClass().getClassLoader().getResource("img/herbs.png"));
         icons[2] = new ImageIcon(getClass().getClassLoader().getResource("img/clay.png"));
@@ -22,22 +28,7 @@ public class TableIcon extends JFrame
         icons[8] = new ImageIcon(getClass().getClassLoader().getResource("img/manacrystal.png"));
         icons[9] = new ImageIcon(getClass().getClassLoader().getResource("img/philosopherstone.png"));
         String[] columnNames = {"Offered Item", "Number Offered", "Demanded Item", "Number Demanded", "Act"};
-        String[] tokens = new String[MainMenuGUI.C.getTradeBox().size()];  
-        Object[][] data = new Object[MainMenuGUI.C.getTradeBox().size()][5];
-        for(int i = 0 ; i<MainMenuGUI.C.getTradeBox().size(); ++i){
-            
-            data[i][0] = icons[MainMenuGUI.C.getTradeBox().get(i).mOfferedItem];
-            data[i][1] = MainMenuGUI.C.getTradeBox().get(i).mNOfferedItem;
-            data[i][2] = icons[MainMenuGUI.C.getTradeBox().get(i).mDemandedItem];
-            data[i][3] = MainMenuGUI.C.getTradeBox().get(i).mNDemandedItem;
-            if(MainMenuGUI.C.getTradeBox().get(i).mIsAvailable){
-                data[i][4] = "Cancel";
-            }
-            else{
-                data[i][4] = "Fetch";
-            }
-            tokens[i] = MainMenuGUI.C.getTradeBox().get(i).mToken;
-        }
+        InitData();
 //        Object[][] data = {
 //            {icons[0],1,icons[2],2,"Cancel"},
 //            {icons[1],2,icons[3],1,"Fetch"},
@@ -73,6 +64,23 @@ public class TableIcon extends JFrame
         getContentPane().add( scrollPane );
     }
     
+    public void InitData(){
+        tokens = new String[MainMenuGUI.C.getTradeBox().size()];  
+        data = new Object[MainMenuGUI.C.getTradeBox().size()][5];
+        for(int i = 0 ; i<MainMenuGUI.C.getTradeBox().size(); ++i){   
+            data[i][0] = icons[MainMenuGUI.C.getTradeBox().get(i).mOfferedItem];
+            data[i][1] = MainMenuGUI.C.getTradeBox().get(i).mNOfferedItem;
+            data[i][2] = icons[MainMenuGUI.C.getTradeBox().get(i).mDemandedItem];
+            data[i][3] = MainMenuGUI.C.getTradeBox().get(i).mNDemandedItem;
+            if(MainMenuGUI.C.getTradeBox().get(i).mIsAvailable){
+                data[i][4] = "Cancel";
+            }
+            else{
+                data[i][4] = "Fetch";
+            }
+            tokens[i] = MainMenuGUI.C.getTradeBox().get(i).mToken;
+        }
+    }
     class ButtonRenderer extends JButton implements TableCellRenderer {
 
         public ButtonRenderer() {
@@ -144,6 +152,11 @@ public class TableIcon extends JFrame
                 else{
                     JOptionPane.showMessageDialog( button , "Error!");
                 }
+                /*frame = new TableIcon();
+                frame.setDefaultCloseOperation( EXIT_ON_CLOSE );
+                frame.pack();
+                frame.setVisible(true);
+                frame.setSize(1366, 768);*/
             }
             isPushed = false;
             return label;
@@ -163,7 +176,7 @@ public class TableIcon extends JFrame
     
     public static void main(String[] args)
     {
-        TableIcon frame = new TableIcon();
+        frame = new TableIcon();
         frame.setDefaultCloseOperation( EXIT_ON_CLOSE );
         frame.pack();
         frame.setVisible(true);

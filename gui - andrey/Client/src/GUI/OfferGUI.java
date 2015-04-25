@@ -343,17 +343,17 @@ public class OfferGUI extends javax.swing.JFrame {
         int demandedID = getIdFromIcon(slot2.getIcon().toString());
             
         if(offeredID >= 0 && demandedID >= 0){
-            int nDemanded = Integer.parseInt(demandedLabel.getText());
-            int nOffered = Integer.parseInt(offeredLabel.getText());
+            int nDemanded = (int) demandedSpinner.getValue();
+            int nOffered = (int) offeredSpinner.getValue();
             if(nDemanded > 0 && nOffered > 0){
                 MainMenuGUI.C.offer(offeredID, nOffered, demandedID, nDemanded);
             }
             else{
-                
+                System.out.println("lalala");
             }
         }
         else{
-            
+            System.out.println("lulu");
         }
     }//GEN-LAST:event_okButtonActionPerformed
 

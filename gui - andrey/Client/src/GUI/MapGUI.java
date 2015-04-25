@@ -312,7 +312,10 @@ public class MapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_mixitemButtonActionPerformed
 
     private void tradeboxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeboxButtonActionPerformed
-
+        MainMenuGUI.C.tradeBox();
+        TableIcon tableIcon = new TableIcon();
+        tableIcon.setVisible(true);
+        
     }//GEN-LAST:event_tradeboxButtonActionPerformed
 
     private void offerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offerButtonActionPerformed
