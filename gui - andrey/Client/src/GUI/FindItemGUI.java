@@ -367,7 +367,7 @@ public class FindItemGUI extends javax.swing.JFrame {
                 MainMenuGUI.C.sendFind(x);
                 tableIcon = new TableIcon(1);
                 setVisible(false);
-                tableIcon.setSize(800, 600);
+                tableIcon.setBounds(600,300,200,175);
                 tableIcon.setVisible(true);
                 break;
             case "fail":
