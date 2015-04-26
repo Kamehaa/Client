@@ -393,6 +393,13 @@ public class MixGUI extends javax.swing.JFrame {
                     break;
             }
         }
+        MainMenuGUI.C.inventory();
+        try {
+            initLabelCount();
+        }
+        catch(Exception e){
+            
+        }
     }//GEN-LAST:event_mixButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -508,6 +515,7 @@ public class MixGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_okalertButtonActionPerformed
     
     private void initLabelCount() throws JSONException{
+        MainMenuGUI.C.inventory();
         honeyCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(0)));
         herbsCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(1)));
         clayCount.setText(String.valueOf(MainMenuGUI.C.getInv().getInt(2)));

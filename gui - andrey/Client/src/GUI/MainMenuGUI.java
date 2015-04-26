@@ -1,5 +1,7 @@
 package GUI;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 /**
@@ -14,7 +16,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private String ip;
     private int port;
     private JPanel serverPort;
-    private boolean changeServer;
+    
     /**
      * Creates new form MainMenuGUI
      */
@@ -22,14 +24,15 @@ public class MainMenuGUI extends javax.swing.JFrame {
         //add(serverPort,BorderLayout.NORTH);
         username = "";
         password = "";
-        ip ="192.168.2.2";
-        port = 3000;
-        changeServer = false;
-        serverPort = new JPanel();
-        serverPort.setVisible(changeServer);
+        ip ="127.0.0.1";
+        port = 2000;
         C =  new Client(ip,port);
         initComponents();
         setVisible(true);
+        alertDialog.setBounds(600,300,200,175);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        setSize(800, 600);
     }
 
     /**
@@ -116,6 +119,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         alertDialog.setTitle("Alert");
 
         okalertButton.setText("OK");
+        okalertButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         okalertButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okalertButtonActionPerformed(evt);
@@ -147,7 +151,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         usernameLabel.setText("Username");
 
@@ -245,15 +248,13 @@ public class MainMenuGUI extends javax.swing.JFrame {
         username = usernameTextField.getText();
         password = passwordTextField.getText();
         C.logIn(username, password);
-        alertDialog.setSize(170, 100);
-        alertDialog.setVisible(true);
         if(C.getStatus().equals("ok"))
         {   
-            alertLabel.setText("Login success!");
             MapGUI map = new MapGUI();
             setVisible(false);
         }
         else{
+            alertDialog.setVisible(true);
             if(C.getStatus().equals("fail")){
                 alertLabel.setText(C.getDescription());
             }
@@ -267,7 +268,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         username = usernameTextField.getText();
         password = passwordTextField.getText();
         C.signUp(username, password);
-        alertDialog.setSize(170, 100);
         alertDialog.setVisible(true);
         switch (C.getStatus()) {
             case "ok":
@@ -287,20 +287,21 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameTextFieldActionPerformed
 
     private void serverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serverMouseClicked
-        changeServer = !changeServer;
-        serverPort.setVisible(changeServer);
+
     }//GEN-LAST:event_serverMouseClicked
 
     private void serverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serverActionPerformed
         ipTextField.setText(ip);
         portTextField.setText(String.valueOf(port));
-        serverDialog.setSize(200, 175);
+        serverDialog.setBounds(600,300,200,175);
         serverDialog.setVisible(true);
     }//GEN-LAST:event_serverActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        ip = ipTextField.getText();
+        ip = ipTextField.getText().toString();
         port = Integer.valueOf(portTextField.getText());
+        C.setIp(ip);
+        C.setPort(port);
         serverDialog.setVisible(false);
     }//GEN-LAST:event_okButtonActionPerformed
 

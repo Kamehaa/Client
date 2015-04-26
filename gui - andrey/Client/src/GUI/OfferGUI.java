@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
@@ -22,7 +24,11 @@ public class OfferGUI extends javax.swing.JFrame {
         setVisible(true);
         initComponents();
         initLabelCount();
-        alertDialog.setBounds(600,400, 170, 100);
+        
+        alertDialog.setBounds(600,300,200,175);
+        setSize(800, 600);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     public int getIdFromIcon(String s){
         int x;

@@ -35,7 +35,6 @@ public class Client{
     private int x;
     private int y;
     private long serverTime;
-    private long deltaTime;
     private String token;
         
     // map attribute
@@ -59,8 +58,8 @@ public class Client{
     
     public Client(){
         mailer = new JSONMailer();
-        ip = "192.168.2.2";
-        port = 3000;
+        ip = "127.0.0.1";
+        port = 2000;
     }
     
     public Client(String _ip, int _port){
@@ -122,10 +121,6 @@ public class Client{
         return serverTime;
     }
 
-    public long getDeltaTime() {
-        return deltaTime;
-    }
-
     public ArrayList<Offer> getTradeBox() {
         return tradeBox;
     }
@@ -177,7 +172,6 @@ public class Client{
                     x = json.getInt("x");
                     y = json.getInt("y");
                     serverTime = json.getLong("time");
-                    deltaTime = serverTime - System.currentTimeMillis()/1000;
                     System.out.println("login success");
                     map();
                     break;
